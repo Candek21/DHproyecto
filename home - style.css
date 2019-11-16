@@ -1,0 +1,58 @@
+/* Moviles en vertical */
+    
+* {
+    background-color: rgb(50, 121, 149);
+}
+
+#Login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#Logo {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+#Form-text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; 
+}
+
+input {
+    color: white;
+}
+
+h5 {
+    text-align: center;
+    color: white;
+}
+
+#Form-option {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; 
+}
+/* Móviles en horizontal o tablets en vertical */
+@media (min-width: 768px) { 
+    
+    
+    
+}
+     
+    
+/*Tablets en horizonal y escritorios normales */
+@media (min-width: 1024px) { 
+    
+    
+    
+} 
