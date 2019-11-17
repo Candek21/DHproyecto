@@ -1,5 +1,5 @@
 /* Moviles en vertical */
-    
+
 * {
     background-color: rgb(50, 121, 149);
 }
@@ -13,6 +13,18 @@
 
 #Logo {
     text-align: center;
+    border: 2px solid white;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding-top: 25px;
+    margin: 10px auto 10px auto;
+}
+
+.cls_logo {
+    width: 200px;
+    height: 150px;
+    background-color: transparent;
 }
 
 h1 {
@@ -24,7 +36,7 @@ h1 {
     display: flex;
     align-items: center;
     flex-direction: column;
-    text-align: center; 
+    text-align: center;
 }
 
 input {
@@ -40,19 +52,15 @@ h5 {
     display: flex;
     align-items: center;
     flex-direction: column;
-    text-align: center; 
+    text-align: center;
 }
+
+
 /* Móviles en horizontal o tablets en vertical */
-@media (min-width: 768px) { 
-    
-    
-    
-}
-     
-    
+
+@media (min-width: 768px) {}
+
+
 /*Tablets en horizonal y escritorios normales */
-@media (min-width: 1024px) { 
-    
-    
-    
-} 
+
+@media (min-width: 1024px) {}
