@@ -1,9 +1,5 @@
 /* Moviles en vertical */
 
-* {
-    background-color: rgb(50, 121, 149);
-}
-
 #Login {
     display: flex;
     align-items: center;
@@ -53,6 +49,38 @@ h5 {
     align-items: center;
     flex-direction: column;
     text-align: center;
+}
+
+#posteos {
+    background-color: rgb(50, 121, 149);
+}
+
+.Bwhite {
+    background-color: white;
+}
+
+.Fblack {
+    color: balck;
+}
+
+.Lwhite {
+    color: white;
+}
+
+.static {
+    position: fixed;
+}
+
+#page-content {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: none;
+}
+
+#posts {
+    background: rgb(50, 121, 149);
 }
 
 
