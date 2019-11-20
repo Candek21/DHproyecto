@@ -27,15 +27,18 @@
     background-color: transparent;
 }
 
-h1,h2,h3,h4,h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     text-align: center;
     color: white;
 }
 
-h6
-{
+h6 {
     text-align: left;
-    color: white;  
+    color: white;
 }
 
 #Form-text {
@@ -56,22 +59,20 @@ input {
     text-align: center;
 }
 
-footer ul li
-{
+footer ul li {
     list-style-type: none;
 }
 
-p a
-{
+p a {
     text-decoration: none;
     color: white;
 }
 
-footer ul li a
-{
+footer ul li a {
     color: white;
     text-decoration: none;
 }
+
 
 /* Móviles en horizontal o tablets en vertical */
 
