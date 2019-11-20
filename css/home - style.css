@@ -64,3 +64,40 @@ h5 {
 /*Tablets en horizonal y escritorios normales */
 
 @media (min-width: 1024px) {}
+
+nav {
+    position: absolute;
+    border: 2px solid white;
+    height: 7vh;
+    top: 92vh;
+    margin: 0 3%;
+    width: 94%;
+    font-size: 2rem;
+    color: black;
+    background-color: rgb(57, 192, 226);
+}
+
+nav ul {
+    list-style-type: none;
+    color: black;
+    padding: 0;
+    background-color: rgb(57, 192, 226);
+}
+
+nav ul li {
+    float: left;
+    text-decoration: none;
+    color: black;
+    margin-left: 8%;
+    background-color: rgb(57, 192, 226);
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(57, 192, 226);
+}
+
+nav ul li a i {
+    background-color: transparent;
+}
