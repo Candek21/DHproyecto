@@ -106,24 +106,10 @@
                                 </div>
                             </div>
                     </div>
-            
-        
-
-          
-
 
         </div>
-        <footer id="footer" class="py-4 bg-dark text-white-50">
-          <div class="container text-center">
-                <ul class="list-inline">
-                        <li class="list-inline-item"><a class="text-xs-center Lwhite" target="_blank" href="#">Rellenar</a></li>
-                        <li class="list-inline-item"><a class="text-xs-center Lwhite" target="_blank" href="#">Rellenar</a></li>
-                        <li class="list-inline-item"><a class="text-xs-center Lwhite" target="_blank" href="#">Rellenar</a></li>
-                     </ul>
-            <small>Copyright &copy; La Mejor Pàgina</small>
-          </div>
-        </footer>
-      </body>
+        <?php include("footer.html"); ?>
+    </body>
 
 
 </html>

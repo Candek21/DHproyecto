@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
 </head>
 
-<body> 
+<body>
     <!-- Header containerA -->
     <header id="containerA">
 
@@ -56,18 +56,9 @@
     </div>
     <!-- FIN containerB -->
     
-    <footer>
-        
-            <ul>
-                <li> <i class="far fa-question-circle"></i> <a href="faq.html">FAQ</a> </li>
-                <li> <i class="fas fa-id-card"></i> <a href="contacto.html">CONTACTO</a> </li>
-                <li> <i class="fas fa-home"></i> <a href="index.php">HOME</a> </li>
-                <li> <i class="fas fa-user-plus"></i> <a href="register.html">REGISTRAR</a> </li>
-            </ul>
-        
-        
-    </footer>
-   
+
+    
+    <?php include("footer.html"); ?>
 
 </body>
 
