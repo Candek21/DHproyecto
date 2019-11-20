@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fisc - F.A.Q.</title>
-    <link rel="stylesheet" href="css/faq - style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/faq - style.css">
 </head>
 
 <body>
     <!-- Header containerA -->
     <header id="containerA">
-
         <div id="Logo" class="bg-white">
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
@@ -24,7 +23,6 @@
 
     <!-- containerB - F.A.Q. -->
     <div id="containerB">
-        <br>
         <h3>FAQ</h3>
         <!-- Campos de texto a completar -->
         <div id="Form-text" class="row">
@@ -55,8 +53,6 @@
         <br>    
     </div>
     <!-- FIN containerB -->
-    
-
     
     <?php include("footer.html"); ?>
 

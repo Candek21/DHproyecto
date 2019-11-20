@@ -26,13 +26,15 @@
 
 h1,h2,h3,h4,h5 {
     text-align: center;
-    color: white;
+    color: black;
 }
 
 h6
 {
     text-align: left;
-    color: white;  
+    color: black;
+    font-weight: 900;
+    font-size: 16px;
 }
 
 #Form-text {
@@ -43,7 +45,7 @@ h6
 }
 
 input {
-    color: white;
+    color: black;
 }
 
 #Form-option {
@@ -53,28 +55,21 @@ input {
     text-align: center;
 }
 
-footer ul li
-{
-    list-style-type: none;
-}
-
 p a
 {
     text-decoration: none;
-    color: white;
-}
-
-footer ul li a
-{
-    color: white;
-    text-decoration: none;
+    color:bkack;
 }
 
 /* Móviles en horizontal o tablets en vertical */
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    max-width: 700px;
+}
 
 
 /*Tablets en horizonal y escritorios normales */
 
-@media (min-width: 1024px) {}
+@media (min-width: 1024px) {
+    max-width: 700px;
+}

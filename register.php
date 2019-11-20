@@ -114,10 +114,6 @@
                 <span  class="m-2 text-white">
                     <input type="radio" name="sex" value="2"><label>Hombre </label>
                 </span>
-                <span  class="m-2 text-white">
-                    <input type="radio" name="sex" value="3"><label>Personalizado</label>
-                    <!-- Acá le podemos mandar un área de texto que se habilite o que aparezca cuando selecionamos esta opción -->
-                </span>
             </span>
             <div><button type="button" class="btn btn-primary btn-sm">Registrarme</button></div>
             <br>
