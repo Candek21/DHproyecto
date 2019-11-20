@@ -18,14 +18,13 @@
         <div id="Logo" class="bg-white">
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
-        <br>
         
     </header>
     <!-- FIN Header containerA -->
 
     <!-- containerB - Formulario de registro -->
     <div id="containerB">
-        <br>
+
         <h3>Registro</h3>
         <!-- Campos de texto a completar -->
         <div id="Form-text" class="row">
@@ -128,15 +127,9 @@
 
     </div>
     <!-- FIN containerB -->
+    <br><br><br>
 
-    <footer>
-        <ul>
-            <li> <i class="far fa-question-circle"></i> <a href="faq.html">FAQ</a> </li>
-            <li> <i class="fas fa-id-card"></i> <a href="contacto.html">CONTACTO</a> </li>
-            <li> <i class="fas fa-home"></i> <a href="index.html">HOME</a> </li>
-            <li> <i class="fas fa-user-plus"></i> <a href="register.html">REGISTRAR</a> </li>
-        </ul>
-    </footer>
+    <?php include("footer.html"); ?>
 
 </body>
 
