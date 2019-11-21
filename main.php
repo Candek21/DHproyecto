@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bienvenidos a Fisc</title>
-    <link rel="stylesheet" href="css/home - style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/home - style.css">
 </head>
 
 <body>
+    <div class="container1">
     <!-- Header containerA -->
     <header id="containerA">
 
@@ -19,7 +20,10 @@
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
 
-        <form>
+
+    </header>
+    <!-- FIN Header containerA -->
+    <form>
             <!-- div que contiene nuestro formulario de inicio de sesión -->
             <div id="Login" class="row">
 
@@ -47,9 +51,6 @@
             </div>
             <!-- Fin del formulario de inicio de sesión -->
         </form>
-
-    </header>
-    <!-- FIN Header containerA -->
 
     <!-- containerB - Formulario de registro -->
     <div id="containerB">
@@ -108,6 +109,7 @@
     </div>
     <!-- FIN containerB -->
     <?php include("footer.html"); ?>
+</div>
 
 </body>
 

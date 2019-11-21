@@ -1,34 +1,35 @@
+footer {}
 
 nav {
+    background-color: rgba(255, 255, 255, .1);
     position: fixed;
-    border: 2px solid white;
-    height: 55px;
-    bottom: 1vh;
-    left: 5vw;
-    right: 5vw;
+    /*border: 2px solid white;*/
+    bottom: 0.5vh;
+    width: 100%;
     font-size: 2rem;
     color: black;
-    background-color: rgba(255, 255, 255, .9);
 }
 
 nav ul {
     list-style-type: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     color: black;
     padding: 0;
     margin: 0;
-    align-items: stretch;
 }
 
 nav ul li {
-    float: left;
     text-decoration: none;
     color: black;
-    width: 12%
+    height: 50px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: black;
+}
+
+nav ul li a:hover {
+    color: darkorange;
 }
