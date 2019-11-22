@@ -8,7 +8,7 @@
     <title>Fisc - F.A.Q.</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/faq - style.css">
+    <link rel="stylesheet" href="css/home - style.css">
 </head>
 
 <body>

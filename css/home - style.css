@@ -57,9 +57,11 @@ input {
     color: white;
 }
 
-h5 {
-    text-align: center;
+h6 {
+    text-align: left;
     color: white;
+    font-weight: 900;
+    font-size: 16px;
 }
 
 #Form-option {
@@ -101,16 +103,13 @@ h5 {
     background: rgb(50, 121, 149);
 }
 
-
-/* Móviles en horizontal o tablets en vertical */
-
-@media (min-width: 768px) {
-    max-width: 700px;
+p a {
+    text-decoration: none;
+    color: white;
 }
 
-
-/*Tablets en horizonal y escritorios normales */
-
-@media (min-width: 1024px) {
-    max-width: 700px;
+.text-white {
+    color: black:
 }
+
+@import "mq.css";
