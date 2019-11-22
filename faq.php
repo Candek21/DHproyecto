@@ -22,36 +22,36 @@
     <!-- FIN Header containerA -->
 
     <!-- containerB - F.A.Q. -->
-    <div id="containerB">
+    <section id="containerB">
         <h3>FAQ</h3>
         <!-- Campos de texto a completar -->
         <div id="Form-text" class="row">
             <div class="col-10">
+                <article class="text-justify">
                 <h6>Q. ¿Lorem ipsum?</h6>
-                <p class="text-justify">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos consequatur dolores quas commodi ab ratione quam debitis ea, fugit neque, saepe perferendis facilis laborum officia, velit tempora optio sed! Distinctio! <br>
-                </p>
+                </article>
                 <br>
+                <article class="text-justify">
                 <h6>Q. ¿Lorem ipsum?</h6>
-                <p class="text-justify">
                     Exercitationem a quos quidem facilis, consectetur modi molestiae asperiores vel deleniti placeat mollitia eius quia soluta pariatur assumenda et nobis incidunt totam debitis? Repudiandae numquam quod maiores iusto voluptate tempora!
                     At accusamus officia quaerat eos, possimus iste dolorum asperiores tempore saepe nulla! Error sit laboriosam sunt illo assumenda, nisi officia labore in nostrum, omnis esse non tempora fugiat, provident itaque?
-                </p>
+                </article>
                 <br>
+                <article class="text-justify">
                 <h6>Q. ¿Lorem ipsum?</h6>
-                <p class="text-justify">
                     Obcaecati, veritatis. Labore delectus cumque eaque minima fugiat, fugit quisquam doloremque voluptas mollitia pariatur dignissimos maxime molestiae voluptates quaerat! Facilis reiciendis nemo ipsam voluptatum aut necessitatibus perspiciatis quis cumque ducimus?
-                </p>
+                </article>
                 <br>
+                <article class="text-justify">    
                 <h6>Q. ¿Lorem ipsum?</h6>
-                <p class="text-justify">    
                     Cupiditate quaerat dicta eum. Possimus ad voluptatibus, commodi accusantium tempore ut perferendis <a href="mailto:support@fisc.com">Support</a> atque corrupti dignissimos molestiae mollitia, laboriosam adipisci incidunt quidem at quaerat porro voluptas cum autem vero quos exercitationem.
-                </p>
+                </article>
             </div>
         </div>
         <!-- Fin de FAQ -->
         <br>    
-    </div>
+    </section>
     <!-- FIN containerB -->
     
     <?php include("footer.html"); ?>

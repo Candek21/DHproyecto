@@ -23,7 +23,7 @@
     <!-- FIN Header containerA -->
 
     <!-- containerB - Formulario de registro -->
-    <div id="containerB" class="container">
+    <section id="containerB" class="container">
 
         <h3>Registro</h3>
         <!-- Campos de texto a completar -->
@@ -45,7 +45,7 @@
             <div>
                 <h5>Fecha de nacimiento</h5>
             </div>
-            <div id="containerC" class="">
+            <section id="containerC" class="">
                 <select name="birthday_day" class="texto-white" style="height: 1.6em">
                     <!-- Esto después lo podemos armar con PHP -->
                     <option value="0" selected="1">Día</option>
@@ -104,7 +104,7 @@
                    <!-- <option value="0">Año</option> -->
                    <!--  <option value="1993">1993</option>  -->
                 <!-- </select>-->
-            </div>
+            </section>
             <br>
             <div class="texto-white"><h5>Sexo</h5></div>
             <span data-type="radio">
@@ -121,7 +121,7 @@
         </div>
         <!-- Fin de opciones a elegir -->
 
-    </div>
+    </section>
     <!-- FIN containerB -->
     <br><br>
     
