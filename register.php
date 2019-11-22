@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenidos a Fisc</title>
+    <title>Bienvenidos a Vulture</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/home - style.css">
@@ -46,7 +46,7 @@
                 <h5>Fecha de nacimiento</h5>
             </div>
             <div id="containerC" class="">
-                <select name="birthday_day" class="text-white" style="height: 1.6em">
+                <select name="birthday_day" class="texto-white" style="height: 1.6em">
                     <!-- Esto después lo podemos armar con PHP -->
                     <option value="0" selected="1">Día</option>
                     <option value="1">1</option>
@@ -81,7 +81,7 @@
                     <option value="30">30</option>
                     <option value="31">31</option>
                 </select>
-                <select name="birthday_month" class="text-white" style="height: 1.6em">
+                <select name="birthday_month" class="texto-white" style="height: 1.6em">
                     <!-- Esto después lo podemos armar con PHP -->
                     <option value="1" selected="1">Ene</option>
                     <option value="2">Feb</option>
@@ -97,7 +97,7 @@
                     <option value="12">Dec</option>        
                 </select>
                 <!-- Esto después lo podemos armar con PHP -->
-                <input name = "birthday_year" type="number" class="text-white" style="height: 1.6em" min="1900" max="2001" step="1" value="2001"/>
+                <input name = "birthday_year" type="number" class="texto-white" style="height: 1.6em" min="1900" max="2001" step="1" value="2001"/>
 
                 <!-- Esto después lo podemos armar con PHP, no lo borré porque posiblemente podríamos utilizarlo para algo más -->
                 <!-- <select name="birthday_year"> -->
@@ -106,12 +106,12 @@
                 <!-- </select>-->
             </div>
             <br>
-            <div class="text-white"><h5>Sexo</h5></div>
+            <div class="texto-white"><h5>Sexo</h5></div>
             <span data-type="radio">
-                <span  class="m-2 text-white">
+                <span  class="m-2 texto-white">
                     <input type="radio" name="sex" value="1"><label>Mujer </label>
                 </span>
-                <span  class="m-2 text-white">
+                <span  class="m-2 texto-white">
                     <input type="radio" name="sex" value="2"><label>Hombre </label>
                 </span>
             </span>

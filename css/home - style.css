@@ -108,8 +108,12 @@ p a {
     color: white;
 }
 
-.text-white {
+.texto-white {
     color: black:
+}
+
+.contrainerC option {
+    color: black;
 }
 
 @import "mq.css";
