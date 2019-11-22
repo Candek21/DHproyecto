@@ -23,7 +23,7 @@
     <!-- FIN Header containerA -->
 
     <!-- containerB - Formulario de registro -->
-    <div id="containerB">
+    <div id="containerB" class="container">
 
         <h3>Registro</h3>
         <!-- Campos de texto a completar -->
@@ -123,9 +123,8 @@
 
     </div>
     <!-- FIN containerB -->
-    <br><br><br>
-    <br><br><br>
-
+    <br><br>
+    
     <?php include("footer.html"); ?>
 
 </body>

@@ -40,8 +40,8 @@
                     </div>
                 </div>
 
-                <div class="col-8">
-                    <button type="submit" class="btn btn-primary btn-sm mb-2">Iniciar</button>
+                <div class="col-10 pt-3">
+                    <button type="submit" class="btn btn-primary btn-sm mb-2 col-12">Iniciar</button>
                 </div>
 
             </div>
@@ -49,11 +49,7 @@
         </form>
 
     </header>
-        </div>
-        <!-- Fin de opciones a elegir -->
 
-    </div>
-    <!-- FIN containerB -->
     <?php include("footer.html"); ?>
 
 </body>
