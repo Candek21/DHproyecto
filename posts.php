@@ -1,113 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenidos a Vulture</title>
- 
-    
-    <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/home - style.css">
-</head>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Inicio</title>
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!--Css local-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--Iconos-->
+        <link rel="stylesheet" href="css/posts.css">
 
+    </head>
 
   
-    <header class="Bwhite ">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img width="65px" src="imgs/Logo - Social.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Contactos</a>
-                <a class="nav-item nav-link" href="#">Actividad</a>
-                <a class="nav-item nav-link" href="#">Perfil</a>
-              </div>
+
+    <body>
+        <header class=" p-0 BCwhite shadow fijo">
+            <div class="row ">
+                <div class="col-md-2"></div>
+                    
+                <div class="col-md-7 pl-0 row ">
+                    <div class="col-md-4 pl-2 pt-1">
+                    <a href="#"><img src="imgs/Logo - Social.png" width=65px></a>
+                    </div>
+                    <div class="col-md-8  pt-1 ">
+                        
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-center justify-content-center">
+                    <div class="d-flex">
+                        <div><a class="fa fa-user Fblack Fsize48 pr-3" href="#"></a></div>
+                        <div><a class="fa fa-sign-out Fblack Fsize48 pr-3" href="#"></a></div>
+                        
+        
+                       
+                    </div>
+                </div>
             </div>
-          </nav>
-
-    </header>
-    
-
-    <body class="d-flex flex-column" id="posts">
+        </header>
         <div class="row">
-          
-            <div class="col-md-4 col-sm-6 col-xs-3">
-                <div class="d-flex flex-column Bwhite mr-2 ml-2 mb-2 mt-3">
-                        <div class="d-flex align-items-center mb-3 mt-3">
-                                <img width="65px" class="mr-3 ml-2 " src="imgs/usuario.jpg">
-                                <p>Nombre de usuario</p>
+           
+            <div class="col-md-2"></div>
+            
+            <div class="col-md-7  row pl-0 ">
+                 <!--Columna extra-->
+                 <div class="col-md-4 mt-3 separacion10">
+                     <div class="p-3 BCwhite shadow rounded-top fijoC overflow-auto overflow-auto d-flex flex-column align-items-center">
+                        <h3>Amigos</h3>
+                            <ul class="pl-0 pt-3">
+                                <li>asd</li>
+                                <li>asd</li>
+                            </ul>
+
+                        
+                     </div>
+                 </div>
+                 <!--Columna publicaciones-->
+                 <div class="col-md-8  d-flex flex-column separacion10">
+                    <!--Caja publicacion-->
+                    <?php for($i=0;$i<20;$i++):?>
+                    <div class="BCwhite shadow mt-3 rounded-top">
+                        <!--Datos creador-->
+                        <div class="pt-2 pl-2">
+                            <img class="rounded-circle"src="imgs/usuario.png" width=13%>
+                            Nombre de usuario
                         </div>
-                        <div class="d-flex justify-content-center"><img width="70%" class="mr-3 ml-2 mb-2" src="imgs/descarga.jpg"></div>
-                        <div class="ml-5 d-flex flex-column">
-                            <h4>Descripcion</h4>
-                            <p>asdfsadfasdfsadfasdfsadfasdfs</p>
-                            <div>Comentarios
+                        <!--Publicacion-->
+                        <div class="p-2">
+                            <!--Contenido de la publicacion ejemplo imagen-->
+                            <img src="imgs/paisaje.jpg" width=100%>
+                            <!--Descripcion y comentarios-->
+                            <div class="mt-2">
+                                <p>Descripcion de esta publicacion podemos ver un poaisaje bonito</p>
                                 <ul>
-                                    <li>Comentario 1</li>
-                                    <li>Comentario 3</li>
-                                    <li>Comentario 2</li>
+                                    <li>Comentario random 1</li>
+                                    <li>Comentario random 1</li>
+                                    <li>Comentario random 1</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-3">
-                    <div class="d-flex flex-column Bwhite mr-2 ml-2 mb-2 mt-3">
-                            <div class="d-flex align-items-center mb-3 mt-3">
-                                    <img width="65px" class="mr-3 ml-2 " src="imgs/usuario.jpg">
-                                    <p>Nombre de usuario</p>
-                            </div>
-                            <div class="d-flex justify-content-center"><img width="70%" class="mr-3 ml-2 mb-2" src="imgs/descarga.jpg"></div>
-                            <div class="ml-5 d-flex flex-column">
-                                <h4>Descripcion</h4>
-                                <p>asdfsadfasdfsadfasdfsadfasdfs</p>
-                                <div>Comentarios
-                                    <ul>
-                                        <li>Comentario 1</li>
-                                        <li>Comentario 3</li>
-                                        <li>Comentario 2</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <?php endfor;?>
+                    <!--Fin publicacion-->
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-3">
-                        <div class="d-flex flex-column Bwhite mr-2 ml-2 mb-2 mt-3">
-                                <div class="d-flex align-items-center mb-3 mt-3">
-                                        <img width="65px" class="mr-3 ml-2 " src="imgs/usuario.jpg">
-                                        <p>Nombre de usuario</p>
-                                </div>
-                                <div class="d-flex justify-content-center"><img width="70%" class="mr-3 ml-2 mb-2" src="imgs/descarga.jpg"></div>
-                                <div class="ml-5 d-flex flex-column">
-                                    <h4>Descripcion</h4>
-                                    <p>asdfsadfasdfsadfasdfsadfasdfs</p>
-                                    <div>Comentarios
-                                        <ul>
-                                            <li>Comentario 1</li>
-                                            <li>Comentario 3</li>
-                                            <li>Comentario 2</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
+                 
+            </div>
+            <div class="col-md-3 "></div>
+           <!-- <div class="col-md-4 "></div>-->
         </div>
-        <?php include("footer.html"); ?>
     </body>
 
 

@@ -1,0 +1,58 @@
+
+
+.BCblack{
+    background-color: black;
+    color: orange;
+}
+
+.BCorange{
+    background-color: orange;
+}
+
+.BCblue{
+    background-color: blue;
+}
+
+.BCwhiteT{
+    background-color: rgba(255, 255, 255, 0.30);
+}
+.BCwhite{
+    background-color: white;
+}
+
+body{
+    background-color: rgb(50, 121, 149);
+}
+
+li{
+    list-style-type: none;
+
+}
+
+.fijo{
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.fijoC{
+    width: 18%;
+    position: fixed;
+    z-index: 1000;
+    height: 75%;
+}
+
+header{ 
+    height: 50px;
+}
+
+.separacion10{
+    padding-top: 45px;
+}
+.Fblack{
+    color:rgb(50, 121, 149);
+}
+
+.Fsize48{
+    font-size: 30px;
+}
