@@ -19,7 +19,7 @@
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
 
-        <form>
+        <form action="posts.php" method="GET">
             <!-- div que contiene nuestro formulario de inicio de sesión -->
             <div id="Login" class="row">
 
