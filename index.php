@@ -26,12 +26,21 @@ function login(){
     return false;
 }
 
+function recordar($email, $contrasenia){
+    setcookie("email", $email);
+    setcookie("contrasenia", $contrasenia);
+}
+
+if(isset($_COOKIE["email"]) and ((isset($_GET["logeado"])))){
+    setcookie("email", null, -1);
+    setcookie("contrasenia", null, -1);
+}
 if($_POST){
     $loged = login();
     if($loged){
         cargarSession();
-
-
+        if(isset($_POST["recordar"]))
+            recordar($_POST["email"],$_POST["contrasenia"]);
     }
 }
 ?>
@@ -59,7 +68,12 @@ if($_POST){
         <div id="Logo">
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
+        <?php if(isset($_COOKIE["email"])):?>
 
+            <?php echo "Bienvenido ".$_COOKIE["email"];?>
+            <a href="index.php?logeado=5">Deslogearse</a>
+        <?php else:?>
+            
         <form action="index.php" method="POST">
             <!-- div que contiene nuestro formulario de inicio de sesión -->
             <div id="Login" class="row">
@@ -76,7 +90,7 @@ if($_POST){
 
                 <div class="col-10">
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="recordar">
                         <label class="form-check-label" for="autoSizingCheck">Remember me</label>
                     </div>
                 </div>
@@ -97,7 +111,7 @@ if($_POST){
             <?php endif;?>
             
         <?php endif;?>
-
+    <?php endif;?>
     </header>
 
     <?php include("footer.html"); ?>
