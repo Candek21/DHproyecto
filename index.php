@@ -1,3 +1,44 @@
+<?php
+function cargarSession(){
+    session_start();
+    $usF = file_get_contents("usuarios.json");
+    $usA = json_decode($usF, true);
+    $indiceU = 0;
+    foreach($usA as $clave => $usuario){
+        if($_POST["email"] == $usuario["reg_email"]){
+            $indiceU = $clave;
+        }
+    }
+    foreach($usA[$indiceU] as $clave => $dato){
+        $_SESSION[$clave] = $dato;
+    }
+
+}
+
+function login(){
+    $usF = file_get_contents("usuarios.json");
+    $usA = json_decode($usF, true);
+    foreach($usA as $usuario){
+        if($_POST["email"] == $usuario["reg_email"])
+            if(password_verify($_POST["contrasenia"], $usuario["reg_passwd"]))
+                return true;
+    }
+    return false;
+}
+
+if($_POST){
+    $loged = login();
+    if($loged){
+        cargarSession();
+
+
+    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,18 +60,18 @@
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
 
-        <form action="posts.php" method="GET">
+        <form action="index.php" method="POST">
             <!-- div que contiene nuestro formulario de inicio de sesión -->
             <div id="Login" class="row">
 
                 <div class="col-10">
                     <label class="sr-only" for="inlineFormInput">Email</label>
-                    <input type="email" class="form-control form-control-sm mb-2" id="inlineFormInput" placeholder="Email">
+                    <input  type="email" class="form-control form-control-sm mb-2" id="inlineFormInput" placeholder="Email" name="email">
                 </div>
 
                 <div class="col-10">
                     <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
-                    <input type="password" class="form-control form-control-sm mb-2" id="inlineFormInputGroup" placeholder="Contraseña">
+                    <input name="contrasenia" type="password" class="form-control form-control-sm mb-2" id="inlineFormInputGroup" placeholder="Contraseña">
                 </div>
 
                 <div class="col-10">
@@ -47,6 +88,15 @@
             </div>
             <!-- Fin del formulario de inicio de sesión -->
         </form>
+        <?php if($_POST):?>
+            <?php if($loged):?>
+                 <?php echo "Usuario logeado"?>
+            <?php else:?>
+                <?php echo "Contrasenia o usuario incorrecto"?>
+                <a href="register.php">Registrarse</a>
+            <?php endif;?>
+            
+        <?php endif;?>
 
     </header>
 
