@@ -54,6 +54,10 @@
 
     }
 
+    setcookie("email", "", -1);
+    setcookie("contrasenia", "",-1);
+    setcookie("logeado", false);
+
     if($_POST){
         $errores = validate();
         if(count($errores)==0){
@@ -210,7 +214,7 @@
     </section>
    
     
-    <?php include("footer.html"); ?>
+    <?php include("footer.php"); ?>
 
 </body>
 

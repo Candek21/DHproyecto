@@ -54,7 +54,7 @@
     </section>
     <!-- FIN containerB -->
     
-    <?php include("footer.html"); ?>
+    <?php include("footer.php"); ?>
 
 </body>
 

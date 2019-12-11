@@ -1,6 +1,3 @@
-
-
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -93,7 +90,7 @@
            <!-- <div class="col-md-4 "></div>-->
         </div>
 
-        <?php include("footer.html"); ?>
+        <?php include("footer.php"); ?>
 
     </body>
 

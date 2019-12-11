@@ -1,48 +1,70 @@
 <?php
-function cargarSession(){
     session_start();
-    $usF = file_get_contents("usuarios.json");
-    $usA = json_decode($usF, true);
-    $indiceU = 0;
-    foreach($usA as $clave => $usuario){
-        if($_POST["email"] == $usuario["reg_email"]){
-            $indiceU = $clave;
+    $loged = false;
+
+    function cargarSession(){
+        $usF = file_get_contents("usuarios.json");
+        $usA = json_decode($usF, true);
+        $indiceU = 0;
+        foreach($usA as $clave => $usuario){
+            if($_POST["email"] == $usuario["reg_email"]){
+                $indiceU = $clave;
+            }
+        }
+        foreach($usA[$indiceU] as $clave => $dato){
+            $_SESSION[$clave] = $dato;
+        }
+
+    }
+
+    function login(){
+        $usF = file_get_contents("usuarios.json");
+        $usA = json_decode($usF, true);
+        foreach($usA as $usuario){
+            if($_POST["email"] == $usuario["reg_email"])
+                if( password_verify($_POST["contrasenia"], $usuario["reg_passwd"]) ){
+                    return true;
+                }
+        }
+        return false;
+    }
+
+    function recordar($email, $contrasenia){
+        setcookie("email", $email);
+        setcookie("contrasenia", $contrasenia);
+        setcookie("logeado", true);
+    }
+
+    function levanta(){
+        if ( isset($_COOKIE['logeado']) ){
+            header('Location: posts.php');
         }
     }
-    foreach($usA[$indiceU] as $clave => $dato){
-        $_SESSION[$clave] = $dato;
+
+    if ( isset($_COOKIE['logeado']) ){
+        header('Location: posts.php');
+    }
+    else
+    {
+ ##       var_dump($_COOKIE);
+  #      die();
     }
 
-}
-
-function login(){
-    $usF = file_get_contents("usuarios.json");
-    $usA = json_decode($usF, true);
-    foreach($usA as $usuario){
-        if($_POST["email"] == $usuario["reg_email"])
-            if(password_verify($_POST["contrasenia"], $usuario["reg_passwd"]))
-                return true;
+    if(!$_POST){
+        if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ){
+            echo "deberia estar logueado";
+            levanta();
+        }
     }
-    return false;
-}
-
-function recordar($email, $contrasenia){
-    setcookie("email", $email);
-    setcookie("contrasenia", $contrasenia);
-}
-
-if(isset($_COOKIE["email"]) and ((isset($_GET["logeado"])))){
-    setcookie("email", null, -1);
-    setcookie("contrasenia", null, -1);
-}
-if($_POST){
-    $loged = login();
-    if($loged){
-        cargarSession();
-        if(isset($_POST["recordar"]))
-            recordar($_POST["email"],$_POST["contrasenia"]);
+    else {
+        $loged = login();
+        echo $loged;
+        if($loged){
+            cargarSession();
+            if(isset($_POST["recordar"]))
+                recordar($_POST["email"],$_POST["contrasenia"]);
+        }
     }
-}
 ?>
 
 
@@ -104,7 +126,9 @@ if($_POST){
         </form>
         <?php if($_POST):?>
             <?php if($loged):?>
-                 <?php echo "Usuario logeado"?>
+                 <?php echo "Usuario logeado";
+                 header('Location: posts.php');
+                 ?>
             <?php else:?>
                 <?php echo "Contrasenia o usuario incorrecto"?>
                 <a href="register.php">Registrarse</a>
@@ -114,7 +138,7 @@ if($_POST){
     <?php endif;?>
     </header>
 
-    <?php include("footer.html"); ?>
+    <?php include("footer.php"); ?>
 
 </body>
 
