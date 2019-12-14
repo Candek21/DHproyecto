@@ -108,7 +108,7 @@
 
     </div>
     <!-- FIN containerB -->
-    <?php include("footer.html"); ?>
+    <?php include("footer.php"); ?>
 </div>
 
 </body>

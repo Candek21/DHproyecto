@@ -11,26 +11,36 @@
                     <i class="fas fa-bell"></i>
                 </a>
             </li>
-            <li>
+            <!--           <li>
                 <a href="buscar.php">
                     <i class="fas fa-search"></i>
                 </a>
             </li>
-            <li>
+         <li>
                 <a href="mensajes.php">
                     <i class="fas fa-envelope"></i>
                 </a>
             </li>
+-->
             <li>
                 <a href="faq.php">
                     <i class="fas fa-question-circle"></i>
                 </a>
             </li>
+            <?php if( !(isset($_COOKIE['logeado'])) ): ?>
             <li>
                 <a href="register.php">
                     <i class="fas fa-user"></i>
                 </a>
             </li>
+            <?php else: ?>
+            <li>
+                <a href="logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+            <?php endif; ?>
+
         </ul>
     </nav>
 </footer>

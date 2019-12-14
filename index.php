@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
   session_start();
+=======
+    session_start();
+    $loged = false;
+>>>>>>> b344b6472c60f8e49ec204f7df3eb7a8e08dd08d
 
     function cargarSession(){
         $usF = file_get_contents("usuarios.json");
@@ -9,11 +14,19 @@
             if($_POST["email"] == $usuario["reg_email"]){
                 $indiceU = $clave;
             }
+<<<<<<< HEAD
+        }
+        foreach($usA[$indiceU] as $clave => $dato){
+            $_SESSION[$clave] = $dato;
+=======
+>>>>>>> b344b6472c60f8e49ec204f7df3eb7a8e08dd08d
         }
         foreach($usA[$indiceU] as $clave => $dato){
             $_SESSION[$clave] = $dato;
         }
+
     }
+<<<<<<< HEAD
 
     function login(){
         $usF = file_get_contents("usuarios.json");
@@ -42,8 +55,57 @@ if($_POST){
         cargarSession();
         if(isset($_POST["recordar"]))
             recordar($_POST["email"],$_POST["contrasenia"]);
+=======
+
+    function login(){
+        $usF = file_get_contents("usuarios.json");
+        $usA = json_decode($usF, true);
+        foreach($usA as $usuario){
+            if($_POST["email"] == $usuario["reg_email"])
+                if( password_verify($_POST["contrasenia"], $usuario["reg_passwd"]) ){
+                    return true;
+                }
+        }
+        return false;
     }
-}
+
+    function recordar($email, $contrasenia){
+        setcookie("email", $email);
+        setcookie("contrasenia", $contrasenia);
+        setcookie("logeado", true);
+    }
+
+    function levanta(){
+        if ( isset($_COOKIE['logeado']) ){
+            header('Location: posts.php');
+        }
+    }
+
+    if ( isset($_COOKIE['logeado']) ){
+        header('Location: posts.php');
+    }
+    else
+    {
+ ##       var_dump($_COOKIE);
+  #      die();
+    }
+
+    if(!$_POST){
+        if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ){
+            echo "deberia estar logueado";
+            levanta();
+        }
+    }
+    else {
+        $loged = login();
+        echo $loged;
+        if($loged){
+            cargarSession();
+            if(isset($_POST["recordar"]))
+                recordar($_POST["email"],$_POST["contrasenia"]);
+        }
+>>>>>>> b344b6472c60f8e49ec204f7df3eb7a8e08dd08d
+    }
 ?>
 
 
@@ -103,8 +165,14 @@ if($_POST){
         </form>
         <?php if($_POST):?>
             <?php if($loged):?>
+<<<<<<< HEAD
                 header("Location: posts.php");
                  <?php echo "Usuario logeado"?>
+=======
+                 <?php echo "Usuario logeado";
+                 header('Location: posts.php');
+                 ?>
+>>>>>>> b344b6472c60f8e49ec204f7df3eb7a8e08dd08d
             <?php else:?>
                 <?php echo "Contrasenia o usuario incorrecto"?>
                 <a href="register.php">Registrarse</a>
@@ -114,7 +182,7 @@ if($_POST){
     <?php endif;?>
     </header>
 
-    <?php include("footer.html"); ?>
+    <?php include("footer.php"); ?>
 
 </body>
 

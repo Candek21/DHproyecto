@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/home - style.css">
 </head>
 
-<body>
+<body class="container p-0 m-0 mr-auto ml-auto">
     <!-- Header containerA -->
     <header id="containerA">
         <div id="Logo" class="bg-white">
@@ -21,41 +21,48 @@
     </header>
     <!-- FIN Header containerA -->
 
-    <!-- containerB - F.A.Q. -->
-    <section id="containerB">
-        <h3>FAQ</h3>
-        <!-- Campos de texto a completar -->
-        <div id="Form-text" class="row">
-            <div class="col-10">
-                <article class="text-justify">
-                <h6>Q. ¿Lorem ipsum?</h6>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos consequatur dolores quas commodi ab ratione quam debitis ea, fugit neque, saepe perferendis facilis laborum officia, velit tempora optio sed! Distinctio! <br>
-                </article>
-                <br>
-                <article class="text-justify">
-                <h6>Q. ¿Lorem ipsum?</h6>
-                    Exercitationem a quos quidem facilis, consectetur modi molestiae asperiores vel deleniti placeat mollitia eius quia soluta pariatur assumenda et nobis incidunt totam debitis? Repudiandae numquam quod maiores iusto voluptate tempora!
-                    At accusamus officia quaerat eos, possimus iste dolorum asperiores tempore saepe nulla! Error sit laboriosam sunt illo assumenda, nisi officia labore in nostrum, omnis esse non tempora fugiat, provident itaque?
-                </article>
-                <br>
-                <article class="text-justify">
-                <h6>Q. ¿Lorem ipsum?</h6>
-                    Obcaecati, veritatis. Labore delectus cumque eaque minima fugiat, fugit quisquam doloremque voluptas mollitia pariatur dignissimos maxime molestiae voluptates quaerat! Facilis reiciendis nemo ipsam voluptatum aut necessitatibus perspiciatis quis cumque ducimus?
-                </article>
-                <br>
-                <article class="text-justify">    
-                <h6>Q. ¿Lorem ipsum?</h6>
-                    Cupiditate quaerat dicta eum. Possimus ad voluptatibus, commodi accusantium tempore ut perferendis <a href="mailto:support@fisc.com">Support</a> atque corrupti dignissimos molestiae mollitia, laboriosam adipisci incidunt quidem at quaerat porro voluptas cum autem vero quos exercitationem.
-                </article>
-            </div>
+    <div class="div-faq">
+        <div class="col-md-2 p-0 d-flex navbar-tablets-desk">
+            <?php include("footer.html"); ?>
         </div>
-        <!-- Fin de FAQ -->
-        <br>    
-    </section>
-    <!-- FIN containerB -->
-    
-    <?php include("footer.html"); ?>
+        
+        <!-- containerB - F.A.Q. -->
+        <section id="containerB col-12 col-md-10 m-0 p-0">
+            <h3>FAQ</h3>
+            <!-- Campos de texto a completar -->
+            <div id="Form-text" class="row">
+                <div class="col-10">
+                    <article class="text-justify">
+                    <h6>Q. ¿Lorem ipsum?</h6>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos consequatur dolores quas commodi ab ratione quam debitis ea, fugit neque, saepe perferendis facilis laborum officia, velit tempora optio sed! Distinctio! <br>
+                    </article>
+                    <br>
+                    <article class="text-justify">
+                    <h6>Q. ¿Lorem ipsum?</h6>
+                        Exercitationem a quos quidem facilis, consectetur modi molestiae asperiores vel deleniti placeat mollitia eius quia soluta pariatur assumenda et nobis incidunt totam debitis? Repudiandae numquam quod maiores iusto voluptate tempora!
+                        At accusamus officia quaerat eos, possimus iste dolorum asperiores tempore saepe nulla! Error sit laboriosam sunt illo assumenda, nisi officia labore in nostrum, omnis esse non tempora fugiat, provident itaque?
+                    </article>
+                    <br>
+                    <article class="text-justify">
+                    <h6>Q. ¿Lorem ipsum?</h6>
+                        Obcaecati, veritatis. Labore delectus cumque eaque minima fugiat, fugit quisquam doloremque voluptas mollitia pariatur dignissimos maxime molestiae voluptates quaerat! Facilis reiciendis nemo ipsam voluptatum aut necessitatibus perspiciatis quis cumque ducimus?
+                    </article>
+                    <br>
+                    <article class="text-justify">    
+                    <h6>Q. ¿Lorem ipsum?</h6>
+                        Cupiditate quaerat dicta eum. Possimus ad voluptatibus, commodi accusantium tempore ut perferendis <a href="mailto:support@fisc.com">Support</a> atque corrupti dignissimos molestiae mollitia, laboriosam adipisci incidunt quidem at quaerat porro voluptas cum autem vero quos exercitationem.
+                    </article>
+                </div>
+            </div>
+            <!-- Fin de FAQ -->
+            <br>    
+        </section>
+        <!-- FIN containerB -->
+    </div>
 
+    <div class="navbar-mobile">
+        <?php include("footer.html"); ?>
+    </div>
 </body>
 
 </html>
