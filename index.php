@@ -1,40 +1,41 @@
 <?php
-function cargarSession(){
-    session_start();
-    $usF = file_get_contents("usuarios.json");
-    $usA = json_decode($usF, true);
-    $indiceU = 0;
-    foreach($usA as $clave => $usuario){
-        if($_POST["email"] == $usuario["reg_email"]){
-            $indiceU = $clave;
+  session_start();
+
+    function cargarSession(){
+        $usF = file_get_contents("usuarios.json");
+        $usA = json_decode($usF, true);
+        $indiceU = 0;
+        foreach($usA as $clave => $usuario){
+            if($_POST["email"] == $usuario["reg_email"]){
+                $indiceU = $clave;
+            }
+        }
+        foreach($usA[$indiceU] as $clave => $dato){
+            $_SESSION[$clave] = $dato;
         }
     }
-    foreach($usA[$indiceU] as $clave => $dato){
-        $_SESSION[$clave] = $dato;
+
+    function login(){
+        $usF = file_get_contents("usuarios.json");
+        $usA = json_decode($usF, true);
+        foreach($usA as $usuario){
+            if($_POST["email"] == $usuario["reg_email"])
+                if(password_verify($_POST["contrasenia"], $usuario["reg_passwd"]))
+                    return true;
+        }
+        return false;
     }
 
-}
-
-function login(){
-    $usF = file_get_contents("usuarios.json");
-    $usA = json_decode($usF, true);
-    foreach($usA as $usuario){
-        if($_POST["email"] == $usuario["reg_email"])
-            if(password_verify($_POST["contrasenia"], $usuario["reg_passwd"]))
-                return true;
+    function recordar($email, $contrasenia){
+        setcookie("email", $email);
+        setcookie("contrasenia", $contrasenia);
     }
-    return false;
-}
 
-function recordar($email, $contrasenia){
-    setcookie("email", $email);
-    setcookie("contrasenia", $contrasenia);
-}
-
-if(isset($_COOKIE["email"]) and ((isset($_GET["logeado"])))){
+if ( isset($_COOKIE["email"]) and isset($_GET["logeado"]) ){
     setcookie("email", null, -1);
     setcookie("contrasenia", null, -1);
 }
+
 if($_POST){
     $loged = login();
     if($loged){
@@ -44,8 +45,6 @@ if($_POST){
     }
 }
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -104,6 +103,7 @@ if($_POST){
         </form>
         <?php if($_POST):?>
             <?php if($loged):?>
+                header("Location: posts.php");
                  <?php echo "Usuario logeado"?>
             <?php else:?>
                 <?php echo "Contrasenia o usuario incorrecto"?>
