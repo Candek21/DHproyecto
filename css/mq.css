@@ -1,0 +1,25 @@
+/* Móviles en horizontal o tablets en vertical */
+
+@media (min-width: 768px) {
+    max-width: 600px;
+    #Logo {
+        text-align: center;
+        border: 2px solid white;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        padding-top: 25px;
+        margin: 30px auto 30px auto;
+        background-color: white;
+    }
+    .cls_logo {
+        width: 200px;
+        height: 150px;
+        background-color: transparent;
+    }
+}
+
+
+/*Tablets en horizonal y escritorios normales */
+
+@media (min-width: 1024px) {}
