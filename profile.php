@@ -7,7 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -21,147 +20,47 @@
 
     <title>Fisc</title>
   </head>
-  <body class="container p-0 m-0 mr-auto ml-auto">
-      
-    <header class="col-md-2 p-0 d-flex navbar-tablets-desk">
-        <?php include("footer.php"); ?>
-    </header>
+  <body>
+    
+    <header></header>
 
-    <main class="col-12 col-md-10 m-0 p-0">
+    <main>
 
-        <div id="container-banner" class="col-12 col-md-12 row">
+        <div id="container-banner" class="col-12 row">
             <img class="image-profile" src="imgs/profile-example.jpg" alt="">
         </div>
 
         <div id="container-description">    
             <div>
                 <h5>GlaDOS</h5>
-                <span><p>The cake is a lie</p></span>
+                <p>The cake is a lie</p>
             </div>    
         </div>
         <br>
         <div id="user-posts">
-            <div class="globalContainer">
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-1.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class=globalContainer>
+                <article>
+                    <div class="img-pub"><img src="./imgs/article-1.jpg" alt=""></div>
+                    <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
                 </article>
-
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-2.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <article>
+                    <div class="img-pub"><img src="./imgs/article-2.jpg" alt=""></div>
+                    <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam harum similique voluptas ullam eligendi, ab nihil exercitationem dolore odio tenetur, deserunt quia. Incidunt quo necessitatibus ab ullam? Nobis, similique officia! </p>
                 </article>
-
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-3.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <article>
+                    <div class="img-pub"><img src="./imgs/article-3.jpg" alt=""></div>
+                    <p class="text-pub"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique sapiente doloribus labore amet corrupti ullam pariatur reprehenderit voluptatum fugiat expedita tempora modi rem dignissimos tenetur temporibus nemo, architecto sit! Rem. </p>
                 </article>
-
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-4.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
+                <article>
+                    <div class="img-pub"><img src="./imgs/article-4.jpg" alt=""></div>
+                    <p class="text-pub"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat ullam ut magni minima praesentium explicabo quas, laudantium, officiis facilis deleniti similique quae, cumque excepturi aspernatur alias libero architecto. Rem, eligendi? </p>
+                </article>       
             </div>
         </div>
 
-        <br><br>
     </main>
 
-    <div class="navbar-mobile">
     <?php include("footer.php"); ?>
-    </div>
-    </body>
     
+    </body>
 </html>

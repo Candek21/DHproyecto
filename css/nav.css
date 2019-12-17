@@ -1,6 +1,9 @@
+footer {}
+
 nav {
     background-color: rgba(255, 255, 255, .1);
     position: fixed;
+    /*border: 2px solid white;*/
     bottom: 0.5vh;
     width: 100%;
     font-size: 2rem;
@@ -14,7 +17,6 @@ nav ul {
     color: black;
     padding: 0;
     margin: 0;
-    border: 1px solid gray;
 }
 
 nav ul li {
@@ -30,95 +32,4 @@ nav ul li a {
 
 nav ul li a:hover {
     color: darkorange;
-}
-
-.navbar-tablets-desk {
-    display: none;
-}
-
-/* Móviles en horizontal o tablets en vertical */
-@media (min-width: 768px) {
-
-body {
-    margin: 0px;
-}
-        
-.navbar-mobile{
-    display: none;
-}
-        
-nav {
-    /* background-color: rgba(255, 255, 255, .1); */
-    position: fixed;
-    /*border: 2px solid white;*/
-    width: 50%;
-    font-size: 3rem;
-    color: black;
-    top: 10vh;    
-}
-        
-nav ul {
-    /* display: block; */
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    flex-direction: column;
-    color: black;
-    padding: 0;
-    margin: 0;
-}
-    
-nav ul li {
-    text-decoration: none;
-    color: black;
-    height: 50px;
-    /* background-color: yellowgreen; */
-    margin-bottom: 50px;
-    margin-left: 5%;
-}
-    
-.navbar-tablets-desk {
-    background-color: rgb(50, 121, 149);
-    border: 1px solid gray; 
-}
-    
-}
-            
-/*Tablets en horizonal y escritorios normales */
-@media (min-width: 1024px) {
-nav {
-    background-color: rgba(255, 255, 255, .1);
-    position: fixed;
-    /*border: 2px solid white;*/
-    bottom: 0.5vh;
-    width: 100%;
-    font-size: 2rem;
-    color: black;
-}
-        
-nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    color: black;
-    padding: 0;
-    margin: 0;
-    border: 1px solid gray;
-}
-        
-nav ul li {
-    text-decoration: none;
-    color: black;
-    height: 50px;
-}
-        
-nav ul li a {
-    text-decoration: none;
-    color: black;
-}
-        
-nav ul li a:hover {
-    color: darkorange;
-}
-        
 }
