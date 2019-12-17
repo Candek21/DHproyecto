@@ -1,4 +1,12 @@
 <?php
+    session_start();
+    if (isset($_COOKIE["logeado"]) && $_COOKIE["logeado"])
+        header('Location: posts.php');
+    else{
+        setcookie("email", "", -1);
+        setcookie("contrasenia", "",-1);
+        setcookie("logeado", false);
+    }
 
     function validate(){
         $usF = file_get_contents("usuarios.json");
@@ -54,9 +62,6 @@
 
     }
 
-    setcookie("email", "", -1);
-    setcookie("contrasenia", "",-1);
-    setcookie("logeado", false);
 
     if($_POST){
         $errores = validate();
