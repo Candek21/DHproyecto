@@ -1,25 +1,11 @@
 <?php
     session_start();
     $loged = false;
-    function cargarSession(){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        $indiceU = 0;
-        foreach($usA as $clave => $usuario){
-            if($_POST["email"] == $usuario["reg_email"]){
-                $indiceU = $clave;
-            }
-        }
-        foreach($usA[$indiceU] as $clave => $dato){
-            $_SESSION[$clave] = $dato;
-        }
-
-    }
 
     function login(){
         $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        foreach($usA as $usuario){
+        $listaUsuarios = json_decode($usF, true);
+        foreach($listaUsuarios as $usuario){
             if($_POST["email"] == $usuario["reg_email"])
                 if( password_verify($_POST["contrasenia"], $usuario["reg_passwd"]) ){
                     return true;
@@ -28,9 +14,27 @@
         return false;
     }
 
+    function cargarSession(){
+        $usF = file_get_contents("usuarios.json");
+        $listaUsuarios = json_decode($usF, true);
+        $indiceU = 0;
+//      foreach($listaUsuarios as $clave => $usuario){
+        foreach($listaUsuarios as $usuario){
+                if($_POST["email"] == $usuario["reg_email"]){
+//                  $indiceU = $clave;
+                    $_SESSION["usuario"] = $usuario;
+            }
+        }
+/*      foreach($usA[$indiceU] as $clave => $dato){
+            $_SESSION[$clave] = $dato;
+        }
+*/
+     }
+
+
     function recordar($email, $contrasenia, $persiste){
         if ($persiste):
-            $tiempo = mktime.time() + (60 * 60 * 24 * 30);
+            $tiempo = time() + (60 * 60 * 24 * 30);
             setcookie("email", $email, $tiempo);
             setcookie("contrasenia", $contrasenia, $tiempo);
             setcookie("logeado", true, $tiempo);
@@ -44,40 +48,36 @@
 
     function levanta(){
         if ( isset($_COOKIE['logeado']) ){
+            cargarSession();
             header('Location: posts.php');
         }
     }
 
+    levanta();
 
- /*   else */
-    {
- ##       var_dump($_COOKIE);
-  #      die();
-    }
-
-    if(!$_POST){
-        if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ){
-            echo "deberia estar logueado";
-            cargarSession();
+    if(!$_POST):
+        if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ):
             levanta();
-        }
-    }
-    else {
+        endif;
+    else:
         $loged = login();
-        echo $loged;
+        
         if($loged){
-            cargarSession();
-            header('Location: posts.php');
             if(isset($_POST["recordar"]))
                 recordar($_POST["email"],$_POST["contrasenia"], True);
             else
-            recordar($_POST["email"],$_POST["contrasenia"], False);
+                recordar($_POST["email"],$_POST["contrasenia"], False);
+
+            levanta();
+            echo "<pre>";
+            var_dump($_SESSION);
+            var_dump($_COOKIE);
+            echo "</pre>";            
+            header('Location: posts.php');
         }
-    
-    }
+    endif;
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,11 +99,6 @@
         <div id="Logo">
             <img class="cls_logo" src="imgs/Logo - Social.png">
         </div>
-        <?php if(isset($_COOKIE["email"])):?>
-
-            <?php echo "Bienvenido ".$_COOKIE["email"];?>
-            <a href="index.php?logeado=5">Deslogearse</a>
-        <?php else:?>
             
         <form action="index.php" method="POST">
             <!-- div que contiene nuestro formulario de inicio de sesión -->
@@ -137,12 +132,10 @@
             <!-- Fin del formulario de inicio de sesión -->
         </form>
 
-            <?php if(!$loged): ?>
-                <?php echo "Contrasenia o usuario incorrecto"?>
+            <?php if($_POST && !$loged): ?>
+                <center>Contrasenia o usuario incorrecto</center>
                 <a href="register.php">Registrarse</a>
-                <?php endif;?>
-                <?php endif;?>
-            
+            <?php endif;?>
 
 </header>
 
