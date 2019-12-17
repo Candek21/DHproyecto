@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if (!$_COOKIE["logeado"])
+        header('Location: index.php');
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
