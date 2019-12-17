@@ -1,8 +1,6 @@
 <?php
     session_start();
     $loged = false;
-
-
     function cargarSession(){
         $usF = file_get_contents("usuarios.json");
         $usA = json_decode($usF, true);
