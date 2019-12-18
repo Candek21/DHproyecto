@@ -1,0 +1,22 @@
+.friend {
+    border: white 1px solid;
+}
+
+.image-friend {
+    width: 100%;
+}
+
+p {
+    color: rgb(194, 196, 183)
+}
+
+span a:link, span a:visited, span a:active {
+    text-decoration:none;
+    color: white;
+}
+
+.ContainerA {
+    border: grey 1px solid;
+    /* background-color: red; */
+    /* width: 80%; */
+}

@@ -1,0 +1,85 @@
+
+.img-profile-post {
+    width: 50px;
+    height: 50px;
+}
+
+#profile-color {
+    background-color: rgb(50, 121, 149);
+}
+
+.text-pub {
+    text-align: center;
+}
+
+.img-pub {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    width: 80%;
+}
+
+p {
+    color:white;
+}
+
+a {
+    text-decoration: none;
+}
+span {
+    color: white;
+    text-decoration: none;
+}
+
+li {
+    color: white;
+}
+
+h5 {
+    color: white;
+    font-weight: bold;
+}
+
+.text-pub {
+    text-align: center;
+}
+
+.img-pub {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    width: 80%;
+}
+
+.img-profile-post {
+    width: 50px;
+    height: 50px;
+}
+
+.comments {
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.prueba {
+    background-color: blanchedalmond;
+}
+
+#ContainerMain {
+    border: 1px solid gray;
+}
+
+/* Móviles en horizontal o tablets en vertical */
+@media (min-width: 768px) {
+
+}
+
+/*Tablets en horizonal y escritorios normales */
+
+@media (min-width: 1024px) {
+
+}
