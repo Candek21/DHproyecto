@@ -1,4 +1,4 @@
-body {
+* {
     /* background-color: rgb(50, 121, 149); */
     padding: 0px;
     margin: 0px;
@@ -26,18 +26,34 @@ body {
 
 #container-description {
     /* background-color: rosybrown; */
-    background-color: rgb(50, 121, 149);
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
     margin-right: 10%;
     margin-left: 10%;
     padding: 20px 5px 0px 5px;
-    /* background-color: white; */
+    background-color: white;
     /* display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center; */
+}
+
+p {
+    color: gray;
+}
+
+.text-pub {
+    text-align: center;
+}
+
+.img-pub {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    width: 80%;
 }
 
 article {
