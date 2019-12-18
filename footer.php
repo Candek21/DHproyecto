@@ -7,24 +7,23 @@
                 </a>
             </li>
             <li>
-                <a href="contacto.php">
-                    <i class="fas fa-bell"></i>
+                <a href="friends.php">
+                    <i class="fas fa-user-friends"></i>
                 </a>
             </li>
-            <!--           <li>
-                <a href="buscar.php">
-                    <i class="fas fa-search"></i>
+            <li>
+                <a href="profile.php"  alt="Perfil">
+                    <i class="fas fa-id-card" alt="Perfil"></i>
                 </a>
             </li>
-         <li>
-                <a href="mensajes.php">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </li>
--->
             <li>
                 <a href="faq.php">
                     <i class="fas fa-question-circle"></i>
+                </a>
+            </li>
+            <li>
+                <a href="contacto.php">
+                    <i class="fas fa-bell"></i>
                 </a>
             </li>
             <?php if( !(isset($_COOKIE['logeado'])) ): ?>
