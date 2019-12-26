@@ -32,7 +32,7 @@ session_start();
 
 </head>
 
-<body> 
+<body>  
     <div class="container ContainerA col-md-12 col-lg-8 p-0">
         <!-- Header-->
         <header>
@@ -49,119 +49,40 @@ session_start();
         <br>
         <!-- Contenedor de amigos -->
         <div class="d-flex flex-row flex-wrap col-md-12 container col-lg-12 justify-content-center">
-            <!-- Divs para cada amigo -->
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 1</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
+            <!-- FOR para cada amigo -->
+            <?php 
+            $fileUser = file_get_contents("usuarios.json");
+            $user = json_decode ($fileUser, true);
 
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 2</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
+            if (!(is_null($user))):
+                for ($i=0; $i < count($user); $i++):
+            ?>
 
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 3</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
+                <div class="d-flex flex-row align-items-center m-2 p-1 col-12 col-md-5 friend">
+                    <div class="div-image d-flex align-items-center text-center"> 
+                        <a href="perfil-amigo.php">    
+                            <?php echo '<img class="border border-white rounded-circle image-friend" src="'."img/".$user[$i]["imagen"].'">'; ?>   
+                        </a> 
+                    </div> 
+                    <div class="div-nombre">
+                        <span>
+                            <a href="perfil-amigo.php">
+                                <?php 
+                                $nombre = $user[$i]["firstname"];
+                                echo $nombre;?>
+                            </a>
+                        </span>
+                    <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
+                    </div>
                 </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 4</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 5</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 6</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 7</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 8</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 9</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 10</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 11</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 12</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 13</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-
-            <div class="d-flex flex-row friend d-flex align-items-center m-2 p-1 col-12 col-md-5">
-                <div class="col-3"> <a href="perfil-amigo.php"><img class="border border-white rounded-circle image-friend" src="imgs/Friend.png" alt=""></a> </div>
-                <div class="col-9">
-                <span><a href="perfil-amigo.php">Amigo 14</a></span>
-                <p>Descripcion amigo</p> <!-- Lo que pone cada usuario en su perfil -->
-                </div>
-            </div>
-            <!-- Fin divs para cada amigo -->
+                <?php 
+                endfor;
+            else:
+                // Cuando el JSON de usuarios esta vacio.
+                echo "<h2>No tienes ningún amigo. Agregue amigos para disfrutar de Vulture.</h2>";
+            endif;            
+            ?>
+            <!-- Fin FOR para cada amigo -->
         </div>
         <!-- Fin contenedor de amigos -->
         <br>
