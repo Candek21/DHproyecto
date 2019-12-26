@@ -21,8 +21,16 @@ img {
     width: 80%;
 }
 
+.color-blue {
+    background-color: rgb(50, 121, 149);
+}
+
 p {
     color:white;
+}
+
+div p span {
+    color: rgb(178, 178, 178)
 }
 
 a {
@@ -65,12 +73,12 @@ img {
     border-top: 1px solid gray;
 }
 
-.prueba {
-    background-color: blanchedalmond;
-}
-
 #ContainerMain {
     border: 1px solid gray;
+}
+
+#container-description {
+    background-color: rgb(50, 121, 149);
 }
 
 /* Móviles en horizontal o tablets en vertical */

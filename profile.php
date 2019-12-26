@@ -2,8 +2,8 @@
     session_start();
     if (!$_COOKIE["logeado"])
         header('Location: index.php');
-
 ?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -36,130 +36,63 @@
     <main id="ContainerMain" class="col-md-12 col-lg-8 justify-content-center container p-0">
 
         <div id="container-banner" class="col-12">
-            <img class="image-profile" src="imgs/profile-example.jpg" alt="">
+            <div id="imagen-banner">
+                <img class="image-profile" src="imgs/profile-example.jpg" alt="">
+            </div>
         </div>
-
-        <div id="container-description">    
-            <div>
+        <div id="container-description" class="color-blue">    
+            <div class="color-blue">
                 <h5>GlaDOS</h5>
-                <p>The cake is a lie</p>
+                <p><span>The cake is a lie</span></p>
             </div>    
         </div>
         <br>
        
         <div id="user-posts">
             <div class="globalContainer">
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-1.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
 
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-2.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
+            <?php 
+                $directory="imgs-posts";
+                $dirint = dir($directory);
 
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-3.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
+                while (($archivo = $dirint->read()) !== false): 
+                    $extension = pathinfo ($archivo, PATHINFO_EXTENSION);
+                    if ($extension == "jpg" || $extension == "jpeg" || $extension == "png"): ?>
 
-                <article class="d-flex flex-column">
-                    <div class="d-flex justify-content-start align-items-center"> 
-                        <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
-                        <div class="p-0"><span> GlaDOS </span></div>                        
-                    </div>
-                    
-                    <div class="col-12 p-0">
-                        <div class="img-pub"><img src="./imgs/article-4.jpg" alt=""></div>
-                        <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
-                        <div class="comments">
-                            <ul>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center"> 
-                                <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
-                                <div> Comentario random 1 </div>
-                                </li>
-                            </ul>
+                    <article class="d-flex flex-column">
+
+                        <div class="d-flex justify-content-start align-items-center"> 
+                            <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
+                            <div class="p-0"><h5><span> GlaDOS </span></h5></div>                        
                         </div>
-                    </div>
+                        
+                        <div class="col-12 p-0">
+                            <div class="img-pub">
+                                <?php echo '<img src="'.$directory."/".$archivo.'">'; ?>
+                            </div>
+                            <p class="text-pub"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum asperiores pariatur iste molestiae tenetur repudiandae, illum non, vero recusandae ex ullam veritatis similique consequatur rerum officiis eveniet? Quae, eveniet quod. </p>
+                            <div class="comments">
+                                <ul>
+                                    <li class="d-flex flex-row align-items-center"> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
+                                    <div> Comentario random 1 </div>
+                                    </li>
+                                    <li class="d-flex flex-row align-items-center"> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
+                                    <div> Comentario random 1 </div>
+                                    </li>
+                                    <li class="d-flex flex-row align-items-center"> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
+                                    <div> Comentario random 1 </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                 </article>
+                    <?php endif; 
+                    endwhile; 
+                    $dirint->close();?>
 
             </div>
         </div>

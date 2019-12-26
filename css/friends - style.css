@@ -1,9 +1,6 @@
 .friend {
     border: white 1px solid;
-}
 
-.image-friend {
-    width: 100%;
 }
 
 p {
@@ -17,6 +14,18 @@ span a:link, span a:visited, span a:active {
 
 .ContainerA {
     border: grey 1px solid;
-    /* background-color: red; */
-    /* width: 80%; */
+}
+
+.image-friend{
+    width: 50%;
+    height: 50%;
+}
+
+.div-image {
+    height: 100px;
+    width: 40%;
+}
+
+.div-nombre {
+    width: 60%;
 }
