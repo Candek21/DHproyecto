@@ -8,18 +8,36 @@
         setcookie("logeado", false);
     }
 
-    function validate(){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
+    function conectarBase(){
+        $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
+        $db_usr ='root';
+        $db_pass = '';
+        try{
+            $db=new PDO($dsn,$db_usr, $db_pass);
+            
+        }catch(PDOException $exeption){
+            echo $exeption->getMessage();
+            return null;
+        }
+        return $db;    
+            
+    }
+
+    function validate($db){
         $errores = [];
         if($_POST["sex"] == NULL)
             array_push($errores, "Indique su sexo");
         if($_FILES["imagen"]["error"] != UPLOAD_ERR_OK){
             array_push($errores, "error al subir la imagen  ");
         }
-        if(in_array($_POST["reg_email"] , array_column($usA,"reg_email"))){
-            array_push($errores, "email ya existente");
+       
+        $query = $db->prepare(' SELECT COUNT(username) FROM usuarios WHERE email = '.$_POST["reg_email"]);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if($result != 0){
+           array_push($errores, "email ya existente");
         }
+
         if($_POST["reg_passwd"] != $_POST["reg_passwdC"]){
             array_push($errores, "Las contrasenias no coinciden.");
         }
@@ -33,7 +51,7 @@
 
         return $errores;
     }
-    function getId(){
+    function getId($db){
         $usF = file_get_contents("usuarios.json");
         $usA = json_decode($usF, true);
         if(count($usA)){
@@ -42,11 +60,11 @@
             return 1;
         }
     }
-    function registrar(){
+    function registrar($db){
         $usF = file_get_contents("usuarios.json");
         $usA = json_decode($usF, true);
         $temp = [];
-        $temp['id'] = getId();
+        $temp['id'] = getId($db);
         $temp["firstname"] = $_POST["firstname"];
         $temp["reg_email"] = $_POST["reg_email"];
         $temp["reg_passwd"] = password_hash($_POST["reg_passwd"], PASSWORD_DEFAULT);
@@ -64,9 +82,10 @@
 
 
     if($_POST){
-        $errores = validate();
+        $db = conectarBase();
+        $errores = validate($db);
         if(count($errores)==0){
-            registrar();
+            registrar($db);
         }
             
             
