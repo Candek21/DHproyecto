@@ -30,14 +30,13 @@
         if($_FILES["imagen"]["error"] != UPLOAD_ERR_OK){
             array_push($errores, "error al subir la imagen  ");
         }
-       
-        $query = $db->prepare(' SELECT COUNT(username) FROM usuarios WHERE email = '.$_POST["reg_email"]);
+        
+        $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["reg_email"].'"');
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
-        if($result != 0){
+        if($result['COUNT(username)'] != 0){
            array_push($errores, "email ya existente");
         }
-
         if($_POST["reg_passwd"] != $_POST["reg_passwdC"]){
             array_push($errores, "Las contrasenias no coinciden.");
         }
@@ -48,43 +47,28 @@
                 if(false == filter_var($valor, FILTER_VALIDATE_EMAIL))
                     array_push($errores, "mail incompatible");
         }
-
         return $errores;
     }
-    function getId($db){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        if(count($usA)){
-            return end($usA)['id'] + 1;
-        } else {
-            return 1;
-        }
-    }
+
     function registrar($db){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        $temp = [];
-        $temp['id'] = getId($db);
-        $temp["firstname"] = $_POST["firstname"];
-        $temp["reg_email"] = $_POST["reg_email"];
-        $temp["reg_passwd"] = password_hash($_POST["reg_passwd"], PASSWORD_DEFAULT);
-        $temp["fecha_nacimineto"] = $_POST["birthday_day"] . $_POST["birthday_month"]. $_POST["birthday_year"]; 
-        $temp["sex"] = $_POST["sex"];
+        $query = $db->prepare('INSERT into usuarios (username, email, password, tipo_usuario,fecha_nac,genero_id, imagen) VALUES(:username, :email, :password, :tipo_usuario, :fecha_nac,:genero_id,:imagen)');
+        $query->bindValue(':username', $_POST["firstname"], PDO::PARAM_STR);
+        $query->bindValue(':email',  $_POST["reg_email"], PDO::PARAM_STR);
+        $query->bindValue(':password', password_hash($_POST["reg_passwd"], PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $query->bindValue(':tipo_usuario', 'usuario', PDO::PARAM_STR);
+        $query->bindValue(':fecha_nac', $_POST["birthday_day"] ."-". $_POST["birthday_month"]."-". $_POST["birthday_year"], PDO::PARAM_STR);
+        $query->bindValue(':genero_id',$_POST["sex"], PDO::PARAM_STR);
         $ext = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-        $temp["imagen"] = uniqid().".".$ext;
-        move_uploaded_file($_FILES["imagen"]["tmp_name"],"img/".$temp["imagen"]);
-        
-        array_push($usA, $temp);
-        $usF = json_encode($usA);
-        file_put_contents("usuarios.json", $usF);
+        $query->bindValue(':imagen',uniqid().".".$ext, PDO::PARAM_STR);
+        $query->execute();
+        move_uploaded_file($_FILES["imagen"]["tmp_name"],"img/".uniqid().".".$ext);
 
     }
-
 
     if($_POST){
         $db = conectarBase();
         $errores = validate($db);
-        if(count($errores)==0){
+        if($errores==[]){
             registrar($db);
         }
             
@@ -123,7 +107,7 @@
 
         <h3>Registro</h3>
         <?php if($_POST):?>
-            <?php if(count($errores)==0):?>
+            <?php if($errores==[]):?>
                 <?php echo "Registro completo"?>
             <?php else:?>
                 <?php foreach($errores as $error):?>
