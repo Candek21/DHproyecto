@@ -2,19 +2,48 @@
     session_start();
     $loged = false;
 
-    function login(){
-        $usF = file_get_contents("usuarios.json");
-        $listaUsuarios = json_decode($usF, true);
-        foreach($listaUsuarios as $usuario){
-            if($_POST["email"] == $usuario["reg_email"])
-                if( password_verify($_POST["contrasenia"], $usuario["reg_passwd"]) ){
-                    return true;
-                }
+    function conectarBase(){
+        $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
+        $db_usr ='root';
+        $db_pass = '';
+        try{
+            $db=new PDO($dsn,$db_usr, $db_pass);
+            
+        }catch(PDOException $exeption){
+            echo $exeption->getMessage();
+            return null;
+        }
+        return $db;    
+            
+    }
+    function login($db){
+        $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["email"].'"');
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if($result['COUNT(username)'] == 1){
+            $query = $db->prepare('SELECT password FROM usuarios WHERE email = "'.$_POST["email"].'"');
+            $query->execute();
+            $pass = $query->fetch(PDO::FETCH_ASSOC);
+            if( password_verify($_POST["contrasenia"], $pass['password']) ){
+                return true;
+            }
         }
         return false;
     }
 
-    function cargarSession(){
+    function cargarSession($db){
+        $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["email"].'"');
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if($result['COUNT(username)'] == 1){
+            $query = $db->prepare('SELECT id, username, email, password, fecha_nac, genero_id, imagen FROM usuarios WHERE email = "'.$_POST["email"].'"');
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            var_dump($result);
+            $_SESSION["usuario"] = $result;
+        }
+
+/**
         $usF = file_get_contents("usuarios.json");
         $listaUsuarios = json_decode($usF, true);
         $indiceU = 0;
@@ -24,7 +53,7 @@
 //                  $indiceU = $clave;
                     $_SESSION["usuario"] = $usuario;
             }
-        }
+        }*/
 /*      foreach($usA[$indiceU] as $clave => $dato){
             $_SESSION[$clave] = $dato;
         }
@@ -46,21 +75,23 @@
 
     }
 
-    function levanta(){
+    function levanta($db){
         if ( isset($_COOKIE['logeado']) ){
-            cargarSession();
+            cargarSession($db);
             header('Location: posts.php');
         }
     }
-
-    levanta();
+    $db = conectarBase();
+    levanta($db);
 
     if(!$_POST):
         if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ):
-            levanta();
+            levanta($db);
         endif;
-    else:
-        $loged = login();
+    else:{
+        $loged = login($db);
+        
+    }
         
         if($loged){
             if(isset($_POST["recordar"]))
