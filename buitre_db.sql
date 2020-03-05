@@ -92,10 +92,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `tipo_usuario` varchar(30) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `fecha_nac` date DEFAULT NULL,
+  `fecha_nac` text,
+  `imagen` text,
   `genero_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 
