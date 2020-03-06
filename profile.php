@@ -1,7 +1,42 @@
 <?php
-    session_start();
-    if (!$_COOKIE["logeado"])
+        session_start();
+    if (isset($_COOKIE["logeado"]) && $_COOKIE["logeado"])
         header('Location: index.php');
+    else{
+        setcookie("email", "", -1);
+        setcookie("contrasenia", "",-1);
+        setcookie("logeado", false);
+    }
+
+    function conectarBase(){
+
+        // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
+        $dsn = 'mysql:host=190.210.222.204;dbname=buitre_db;port3306';
+        $db_usr ='buitre';
+        $db_pass = 'cancrinachja';
+
+        try{
+            $db=new PDO($dsn,$db_usr, $db_pass);
+            
+        }catch(PDOException $exeption){
+            echo $exeption->getMessage();
+            return null;
+        }
+        return $db;    
+            
+    }
+
+    function deletPost($idPost){
+        $db = conectarBase();
+        
+        if(isset($_POST['eliminar'])){
+            $consulta = 'DELETE posts FROM  WHERE :id = $idPost';
+            $query = $db -> prepare($consulta);
+            $sql->execute();
+        }
+        
+    }
+   
 ?>
 
 <!doctype html>
