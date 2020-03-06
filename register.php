@@ -112,10 +112,10 @@
         <h3>Registro</h3>
         <?php if($_POST):?>
             <?php if($errores==[]):?>
-                <?php echo "Registro completo"?>
+                Registro completo
             <?php else:?>
                 <?php foreach($errores as $error):?>
-                        Error encontrado, <?php echo $error?>
+                        Error encontrado, <?= $error?>
                         <br>
                 <?php endforeach?>
             <?php endif;?>
