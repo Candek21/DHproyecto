@@ -3,9 +3,12 @@
     $loged = false;
 
     function conectarBase(){
-        $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
-        $db_usr ='root';
-        $db_pass = '';
+
+        // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
+        $dsn = 'mysql:host=190.210.222.204;dbname=buitre_db;port3306';
+        $db_usr ='buitre';
+        $db_pass = 'cancrinachja';
+
         try{
             $db=new PDO($dsn,$db_usr, $db_pass);
             
