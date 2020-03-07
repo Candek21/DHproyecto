@@ -7,6 +7,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta lang="ES">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Inicio</title>
@@ -42,6 +43,29 @@
                  <!--Columna publicaciones-->
                  <section class="col-md-8  d-flex flex-column centrar">
                     <!--Caja publicacion-->
+
+                    <article class="BCwhite shadow mt-3 rounded-top">
+                        <!--Datos creador-->
+                        <div class="pt-2 pl-2">
+                            <img class="rounded-circle"src="imgs/profiles/usuario.png" width=13%>
+                            Nombre de usuario
+                        </div>
+                        <!--Publicacion-->
+                        <div class="p-2">
+                            <!--Descripcion y comentarios-->
+                            <div class="mt-2 form-group">
+                                <form method="POST" action="addpost.php">
+                                    <textarea class="form-control" placeholder="Ingrese aquí su comentario..."></textarea>
+                                    <div class="custom-file mt-1">
+                                        <input type="file" class="custom-file-input" id="customFile" name="archivo" accept="image/*" placeholder="Ingrese aquí su comentario...">
+                                        <label class="custom-file-label" for="customFile">Seleccion una imagen</label>
+                                    </div>
+                                    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </article>
                     <?php for($i=0;$i<20;$i++):?>
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
@@ -52,7 +76,7 @@
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
-                            <img src="imgs/paisaje.jpg" width=100%>
+                            <img src="imgs/posts/paisaje.jpg" width=100%>
                             <!--Descripcion y comentarios-->
                             <div class="mt-2">
                                 <p>Descripcion de esta publicacion podemos ver un poaisaje bonito</p>
