@@ -1,24 +1,8 @@
 <?php
     session_start();
     $loged = false;
-
-    function conectarBase(){
-
-        // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
-        $dsn = 'mysql:host=190.210.222.204;dbname=buitre_db;port3306';
-        $db_usr ='buitre';
-        $db_pass = 'cancrinachja';
-
-        try{
-            $db=new PDO($dsn,$db_usr, $db_pass);
-            
-        }catch(PDOException $exeption){
-            echo $exeption->getMessage();
-            return null;
-        }
-        return $db;    
-            
-    }
+    include_once("db.php");
+    
     function login($db){
         $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["email"].'"');
         $query->execute();
@@ -102,7 +86,7 @@
             else
                 recordar($_POST["email"],$_POST["contrasenia"], False);
 
-            levanta();
+            levanta($db);
             echo "<pre>";
             var_dump($_SESSION);
             var_dump($_COOKIE);

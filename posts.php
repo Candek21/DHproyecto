@@ -2,7 +2,6 @@
     session_start();
     if (!$_COOKIE["logeado"])
         header('Location: index.php');
-
 ?>
 
 <html>
@@ -47,7 +46,7 @@
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
                         <div class="pt-2 pl-2">
-                            <img class="rounded-circle"src="imgs/usuario.png" width=13%>
+                            <img class="rounded-circle"src="imgs/profiles/usuario.png" width=13%>
                             Nombre de usuario
                         </div>
                         <!--Publicacion-->

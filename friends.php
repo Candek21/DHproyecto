@@ -61,7 +61,7 @@ session_start();
                 <div class="d-flex flex-row align-items-center m-2 p-1 col-12 col-md-5 friend">
                     <div class="div-image d-flex align-items-center text-center"> 
                         <a href="perfil-amigo.php">    
-                            <?php echo '<img class="border border-white rounded-circle image-friend" src="'."img/".$user[$i]["imagen"].'">'; ?>   
+                            <?php echo '<img class="border border-white rounded-circle image-friend" src="'."imgs/profiles/".$user[$i]["imagen"].'">'; ?>   
                         </a> 
                     </div> 
                     <div class="div-nombre">
