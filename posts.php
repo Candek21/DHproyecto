@@ -25,13 +25,26 @@
 
         $toLikes = "";
         foreach($likes as $like):
-            //var_dump($postID);
+            //  var_dump($postID);
             $toLikes .= '<a href="dolike.php?id=' .$like['id'] .'&post=' .$postID .'">';
             $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="5%">';
             $toLikes .= "</a>";
         endforeach;
 
         return $toLikes;
+    }
+
+    function getComents($postID){
+        $db = conectarBase();
+
+        $sqlstat = "select * from comentarios where id_post = :postID";
+        $query = $db->prepare($sqlstat);
+        $query->bindValue(':postID', $postID, PDO::PARAM_INT);
+        $query->execute();
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($res);
+        return $res;
+
     }
     // var_dump($posts);
 ?>
@@ -80,7 +93,7 @@
                         <!--Datos creador-->
                         <div class="p-2 pl-2">
                             <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
-                            <span ><?= $usuarioActual["username"] ?></span>
+                            <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
                         </div>
                         <!--Publicacion-->
                         <div class="p-2">
@@ -98,22 +111,24 @@
                             </div>
                         </div>
                     </article>
-                    <?php foreach ($posts as $unpost): ?>
+                    <?php foreach ($posts as $unPost): ?>
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
                         <div class="pt-2 pl-2">
                         <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
-                        <span ><?= $usuarioActual["username"] ?></span>
+                        <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
                         </div>
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
-                            <img src="imgs/posts/<?= $unpost["contenido_p"] ?>" width=100%>
+                            <?php if ($unPost['contenido_p']): ?>
+                                <img src="imgs/posts/<?= $unPost["contenido_p"] ?>" width=100%>
+                            <?php endif; ?>
                             <!--Descripcion y comentarios-->
                             <div class="mt-2">
-                                <p><?= $unpost["descripcion"] ?></p>
+                                <p><?= $unPost["descripcion"] ?></p>
                                 <hr>
-                                <?= getLikes($unpost["id"]) ?>
+                                <?= getLikes($unPost["id"]) ?>
                                 <hr>
                                 <?php /*
                                 <!-- <ul>
@@ -123,8 +138,24 @@
                                 </ul> -->
                                 */ ?>
                             </div>
+                            <form method="POST" action="addcomment.php" enctype="multipart/form-data">
+                                <div class="mt-2 mx-0 form-group row" style="vertical-align: text-top;">
+                                        <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
+                                        <textarea  class="form-control col-10 mr-0" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                        <button class="btn btn-sm btn-primary mt-2 ml-3" type="submit">Enviar</button>
+                                </div>
+                            </form>
                         </div>
-                    </article>
+                        <!-- Comienzo Comentarios -->
+                        <?php foreach(getComents($unPost["id"]) as $coment): ?>
+                            <?php if($coment['contenido_c'] != ''): ?>
+                                <div style="border: 1px solid black">
+                                    <?= $coment["contenido_c"] ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <!-- Fin Comentarios -->
+                        </article>
                     <?php endforeach;?>
                     <!--Fin publicacion-->
                 </div>

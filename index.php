@@ -30,14 +30,14 @@
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if($result['contador'] == 1):
-            $query = $db->prepare('SELECT id, username, email, password, fecha_nac, genero_id, imagen FROM usuarios WHERE email = "' .$emailToSend .'"');
+            $query = $db->prepare('SELECT id, nombre,  username, email, password, fecha_nac, genero_id, imagen FROM usuarios WHERE email = "' .$emailToSend .'"');
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
             var_dump($result);
             $_SESSION["usuario"] = $result;
         else:
-            var_dump($result);
-            die("el cargar sesion no esta levantando lo correcto");
+         //   var_dump($result);
+         //   die("el cargar sesion no esta levantando lo correcto");
         endif;   
 
 /**
@@ -77,7 +77,7 @@
             header('Location: posts.php');
     }
 
-    levanta($db);
+    //levanta($db);
 
     if(!$_POST):
         if( isset($_COOKIE["logeado"]) and isset($_COOKIE["email"])):
