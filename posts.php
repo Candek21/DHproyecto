@@ -2,19 +2,38 @@
     session_start();
     require_once("db.php");
     checaLogin();
+
+    $db = conectarBase();
     
     $usuarioActual = $_SESSION["usuario"];
 
-/*    if (!$_COOKIE["logeado"]):
-        header('Location: index.php');
-    endif;
+    $sqlstat = "select * from posts where id_usuario = :idUsuario order by id DESC";
+    $query = $db->prepare($sqlstat);
+    $query->bindValue(':idUsuario', $usuarioActual["id"], PDO::PARAM_STR);
+    $query->execute();
 
-    if (!isset($_SESSION["usuario"])):
-        die("no se envio el usuario.");
-    endif;
+    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    $usuarioActual = $_SESSION["usuario"];
-    */
+    function getLikes($postID){
+        $db = conectarBase();
+
+        $sqlstat = "select * from reacciones";
+        $query = $db->prepare($sqlstat);
+        $query->execute();
+
+        $likes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $toLikes = "";
+        foreach($likes as $like):
+            //var_dump($postID);
+            $toLikes .= '<a href="dolike.php?id=' .$like['id'] .'&post=' .$postID .'">';
+            $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="5%">';
+            $toLikes .= "</a>";
+        endforeach;
+
+        return $toLikes;
+    }
+    // var_dump($posts);
 ?>
 
 <html>
@@ -66,11 +85,11 @@
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Descripcion y comentarios-->
-                            <div class="mt-2 form-group">
-                                <form method="POST" action="addpost.php">
-                                    <textarea class="form-control" placeholder="Ingrese aquí su comentario..."></textarea>
+                            <div class="mt-2 form-group" >
+                                <form method="POST" action="addpost.php" enctype="multipart/form-data">
+                                    <textarea class="form-control" placeholder="Ingrese aquí su comentario..." name="texto"></textarea>
                                     <div class="custom-file mt-1">
-                                        <input type="file" class="custom-file-input" id="customFile" name="archivo" accept="image/*" placeholder="Ingrese aquí su comentario...">
+                                        <input type="file" class="custom-file-input" id="customFile" name="imagen" accept="image/*">
                                         <label class="custom-file-label" for="customFile">Seleccion una imagen</label>
                                     </div>
                                     <button class="btn btn-primary mt-2" type="submit">Enviar</button>
@@ -79,29 +98,34 @@
                             </div>
                         </div>
                     </article>
-                    <?php for($i=0;$i<20;$i++):?>
+                    <?php foreach ($posts as $unpost): ?>
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
                         <div class="pt-2 pl-2">
-                            <img class="rounded-circle"src="imgs/profiles/usuario.png" width=13%>
-                            Nombre de usuario
+                        <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
+                        <span ><?= $usuarioActual["username"] ?></span>
                         </div>
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
-                            <img src="imgs/posts/paisaje.jpg" width=100%>
+                            <img src="imgs/posts/<?= $unpost["contenido_p"] ?>" width=100%>
                             <!--Descripcion y comentarios-->
                             <div class="mt-2">
-                                <p>Descripcion de esta publicacion podemos ver un poaisaje bonito</p>
-                                <ul>
+                                <p><?= $unpost["descripcion"] ?></p>
+                                <hr>
+                                <?= getLikes($unpost["id"]) ?>
+                                <hr>
+                                <?php /*
+                                <!-- <ul>
                                     <li>Comentario random 1</li>
                                     <li>Comentario random 1</li>
                                     <li>Comentario random 1</li>
-                                </ul>
+                                </ul> -->
+                                */ ?>
                             </div>
                         </div>
                     </article>
-                    <?php endfor;?>
+                    <?php endforeach;?>
                     <!--Fin publicacion-->
                 </div>
                  
