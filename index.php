@@ -1,7 +1,8 @@
 <?php
     session_start();
     $loged = false;
-    include_once("db.php");
+    require_once("db.php");
+    $db = conectarBase();
     
     function login($db){
         $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["email"].'"');
@@ -12,6 +13,7 @@
             $query->execute();
             $pass = $query->fetch(PDO::FETCH_ASSOC);
             if( password_verify($_POST["contrasenia"], $pass['password']) ){
+                cargarSession($db);
                 return true;
             }
         }
@@ -19,16 +21,24 @@
     }
 
     function cargarSession($db){
-        $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["email"].'"');
+        if (isset($_POST['email'])):
+            $emailToSend = $_POST['email'];
+        else:
+            $emailToSend = $_COOKIE["email"];
+        endif;
+        $query = $db->prepare('SELECT COUNT(username) as contador FROM usuarios WHERE email = "'.$emailToSend.'"');
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
-        if($result['COUNT(username)'] == 1){
-            $query = $db->prepare('SELECT id, username, email, password, fecha_nac, genero_id, imagen FROM usuarios WHERE email = "'.$_POST["email"].'"');
+        if($result['contador'] == 1):
+            $query = $db->prepare('SELECT id, username, email, password, fecha_nac, genero_id, imagen FROM usuarios WHERE email = "' .$emailToSend .'"');
             $query->execute();
             $result = $query->fetch(PDO::FETCH_ASSOC);
             var_dump($result);
             $_SESSION["usuario"] = $result;
-        }
+        else:
+            var_dump($result);
+            die("el cargar sesion no esta levantando lo correcto");
+        endif;   
 
 /**
         $usF = file_get_contents("usuarios.json");
@@ -63,38 +73,37 @@
     }
 
     function levanta($db){
-        if ( isset($_COOKIE['logeado']) ){
             cargarSession($db);
             header('Location: posts.php');
-        }
     }
-    $db = conectarBase();
+
     levanta($db);
 
     if(!$_POST):
-        if( isset($_COOKIE["email"]) and isset($_COOKIE["logeado"]) ):
+        if( isset($_COOKIE["logeado"]) and isset($_COOKIE["email"])):
             levanta($db);
         endif;
-    else:{
+    else:
         $loged = login($db);
         
-    }
+    endif;
         
-        if($loged){
-            if(isset($_POST["recordar"]))
+        if($loged):
+            if(isset($_POST["recordar"])):
                 recordar($_POST["email"],$_POST["contrasenia"], True);
-            else
+            else:
                 recordar($_POST["email"],$_POST["contrasenia"], False);
+            endif;
 
             levanta($db);
-            echo "<pre>";
+/*            echo "<pre>";
             var_dump($_SESSION);
             var_dump($_COOKIE);
-            echo "</pre>";            
+            echo "</pre>";
+            */
+            
             header('Location: posts.php');
-        }
-    endif;
-
+        endif;
 ?>
 
 <!DOCTYPE html>

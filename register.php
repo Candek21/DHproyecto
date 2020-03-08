@@ -48,7 +48,7 @@
         $ext = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
         $query->bindValue(':imagen',uniqid().".".$ext, PDO::PARAM_STR);
         $query->execute();
-        move_uploaded_file($_FILES["imagen"]["tmp_name"],"imgs/".uniqid().".".$ext);
+        move_uploaded_file($_FILES["imagen"]["tmp_name"],"imgs/profiles/".uniqid().".".$ext);
 
     }
 

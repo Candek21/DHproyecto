@@ -1,7 +1,8 @@
 <?php
-session_start();
-    if (!$_COOKIE["logeado"])
-        header('Location: index.php');
+    session_start();
+    require_once("db.php");
+    checaLogin();
+    $usuarioActual = $_SESSION["usuario"];
 
 ?>
 <!DOCTYPE html>
