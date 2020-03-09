@@ -37,7 +37,9 @@
     function getComents($postID){
         $db = conectarBase();
 
-        $sqlstat = "select * from comentarios where id_post = :postID";
+        $sqlstat = "SELECT c.*, u.id u_id, u.imagen u_imagen, u.nombre u_nombre FROM comentarios c";
+        $sqlstat .= " INNER JOIN usuarios u ON u.id = c.id_usuario";
+        $sqlstat .= " WHERE id_post = :postID";
         $query = $db->prepare($sqlstat);
         $query->bindValue(':postID', $postID, PDO::PARAM_INT);
         $query->execute();
@@ -139,17 +141,18 @@
                                 */ ?>
                             </div>
                             <form method="POST" action="addcomment.php" enctype="multipart/form-data">
-                                <div class="mt-2 mx-0 form-group row" style="vertical-align: text-top;">
+                                <div class="mt-2 mx-0 form-group row align-top">
                                         <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
-                                        <textarea  class="form-control col-10 mr-0" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
-                                        <button class="btn btn-sm btn-primary mt-2 ml-3" type="submit">Enviar</button>
+                                        <textarea  class="form-control col-10 mr-0 h-2" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                        <button class="btn btn-sm btn-primary mt-0 ml-3" type="submit">Enviar</button>
                                 </div>
                             </form>
                         </div>
                         <!-- Comienzo Comentarios -->
                         <?php foreach(getComents($unPost["id"]) as $coment): ?>
                             <?php if($coment['contenido_c'] != ''): ?>
-                                <div style="border: 1px solid black">
+                                <div class="p-2 mx-2 mb-1 rounded" style="border: 1px solid gray">
+                                <img class="rounded-circle mb-1 mr-2" src="imgs/profiles/<?= $coment["u_imagen"] ?>" width="7%" alt="<?= $coment['u_nombre']?>" title="<?= $coment['u_nombre']?>" >
                                     <?= $coment["contenido_c"] ?>
                                 </div>
                             <?php endif; ?>
