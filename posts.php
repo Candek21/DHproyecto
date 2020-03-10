@@ -93,9 +93,14 @@
 
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
-                        <div class="p-2 pl-2">
-                            <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
-                            <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
+                        <div class="p-2 pl-2 row">
+                            <div class="col-2">
+                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=100%>
+                            </div>
+                            <div class="col-10">
+                                <strong><?= $usuarioActual["nombre"] ?></strong><br>
+                                sarasa
+                            </div>
                         </div>
                         <!--Publicacion-->
                         <div class="p-2">
@@ -116,10 +121,16 @@
                     <?php foreach ($posts as $unPost): ?>
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
-                        <div class="pt-2 pl-2">
-                        <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
-                        <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
+                        <div class="p-2 pl-2 row">
+                            <div class="col-2">
+                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=100%>
+                            </div>
+                            <div class="col-10">
+                                <strong><?= $usuarioActual["nombre"] ?></strong><br>
+                                sarasa
+                            </div>
                         </div>
+
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
@@ -132,19 +143,12 @@
                                 <hr>
                                 <?= getLikes($unPost["id"]) ?>
                                 <hr>
-                                <?php /*
-                                <!-- <ul>
-                                    <li>Comentario random 1</li>
-                                    <li>Comentario random 1</li>
-                                    <li>Comentario random 1</li>
-                                </ul> -->
-                                */ ?>
-                            </div>
+                             </div>
                             <form method="POST" action="addcomment.php" enctype="multipart/form-data">
                                 <div class="mt-2 mx-0 form-group row align-top">
                                         <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
-                                        <textarea  class="form-control col-10 mr-0 h-2" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
-                                        <button class="btn btn-sm btn-primary mt-0 ml-3" type="submit">Enviar</button>
+                                        <textarea  class="form-control col-10 mr-0 h-2 py-0" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                        <button class="btn btn-primary mt-0 ml-2 py-0" type="submit">Enviar</button>
                                 </div>
                             </form>
                         </div>
