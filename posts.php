@@ -1,47 +1,60 @@
 <?php
     session_start();
-    if (isset($_COOKIE["logeado"]) && $_COOKIE["logeado"])
-        header('Location: index.php');
-    else{
-        setcookie("email", "", -1);
-        setcookie("contrasenia", "",-1);
-        setcookie("logeado", false);
-    }
+    require_once("db.php");
+    checaLogin();
 
-    function conectarBase(){
+    $db = conectarBase();
+    
+    $usuarioActual = $_SESSION["usuario"];
 
-        // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
-        $dsn = 'mysql:host=190.210.222.204;dbname=buitre_db;port3306';
-        $db_usr ='buitre';
-        $db_pass = 'cancrinachja';
+    $sqlstat = "select * from posts where id_usuario = :idUsuario order by id DESC";
+    $query = $db->prepare($sqlstat);
+    $query->bindValue(':idUsuario', $usuarioActual["id"], PDO::PARAM_STR);
+    $query->execute();
 
-        try{
-            $db=new PDO($dsn,$db_usr, $db_pass);
-            
-        }catch(PDOException $exeption){
-            echo $exeption->getMessage();
-            return null;
-        }
-        return $db;    
-            
-    }
+    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    function deletPost($idPost){
+    function getLikes($postID){
         $db = conectarBase();
-        
-        if(isset($_POST['eliminar'])){
-            $consulta = 'DELETE posts FROM  WHERE :id = $idPost';
-            $query = $db -> prepare($consulta);
-            $sql->execute();
-        }
-        
+
+        $sqlstat = "select * from reacciones";
+        $query = $db->prepare($sqlstat);
+        $query->execute();
+
+        $likes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $toLikes = "";
+        foreach($likes as $like):
+            //  var_dump($postID);
+            $toLikes .= '<a href="dolike.php?id=' .$like['id'] .'&post=' .$postID .'">';
+            $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="5%">';
+            $toLikes .= "</a>";
+        endforeach;
+
+        return $toLikes;
     }
-   
+
+    function getComents($postID){
+        $db = conectarBase();
+
+        $sqlstat = "SELECT c.*, u.id u_id, u.imagen u_imagen, u.nombre u_nombre FROM comentarios c";
+        $sqlstat .= " INNER JOIN usuarios u ON u.id = c.id_usuario";
+        $sqlstat .= " WHERE id_post = :postID";
+        $query = $db->prepare($sqlstat);
+        $query->bindValue(':postID', $postID, PDO::PARAM_INT);
+        $query->execute();
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($res);
+        return $res;
+
+    }
+    // var_dump($posts);
 ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta lang="ES">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Inicio</title>
@@ -51,8 +64,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!--Css local-->
-        <link rel="stylesheet" href="css/post.css">
         <link rel="stylesheet" href="css/home - style.css">
+        <link rel="stylesheet" href="css/post.css">
         <!--Iconos-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
@@ -77,29 +90,87 @@
                  <!--Columna publicaciones-->
                  <section class="col-md-8  d-flex flex-column centrar">
                     <!--Caja publicacion-->
-                    <?php for($i=0;$i<20;$i++):?>
+
+                    <article class="BCwhite shadow mt-3 rounded-top">
+                        <!--Datos creador-->
+                        <div class="p-2 pl-2">
+                            <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
+                            <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
+                        </div>
+                        <!--Publicacion-->
+                        <div class="p-2">
+                            <!--Descripcion y comentarios-->
+                            <div class="mt-2 form-group" >
+                                <form method="POST" action="addpost.php" enctype="multipart/form-data">
+                                    <textarea class="form-control" placeholder="Ingrese aquí su comentario..." name="texto"></textarea>
+                                    <div class="custom-file mt-1">
+                                        <input type="file" class="custom-file-input" id="customFile" name="imagen" accept="image/*">
+                                        <label class="custom-file-label" for="customFile">Seleccion una imagen</label>
+                                    </div>
+                                    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                    <?php foreach ($posts as $unPost): ?>
                     <article class="BCwhite shadow mt-3 rounded-top">
                         <!--Datos creador-->
                         <div class="pt-2 pl-2">
-                            <img class="rounded-circle"src="imgs/usuario.png" width=13%>
-                            Nombre de usuario
+                            <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=13%>
+                            <span ><strong><?= $usuarioActual["nombre"] ?></strong></span>
                         </div>
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
-                            <img src="imgs/paisaje.jpg" width=100%>
+                            <?php if ($unPost['contenido_p']): ?>
+                                <img src="imgs/posts/<?= $unPost["contenido_p"] ?>" width=100%>
+                            <?php endif; ?>
                             <!--Descripcion y comentarios-->
                             <div class="mt-2">
-                                <p>Descripcion de esta publicacion podemos ver un poaisaje bonito</p>
-                                <ul>
+                                <p><?= $unPost["descripcion"] ?></p>
+                                <hr>
+                                <?= getLikes($unPost["id"]) ?>
+                                <hr>
+                                <?php /*
+                                <!-- <ul>
                                     <li>Comentario random 1</li>
                                     <li>Comentario random 1</li>
                                     <li>Comentario random 1</li>
-                                </ul>
+                                </ul> -->
+                                */ ?>
                             </div>
+                            <form method="POST" action="addcomment.php" enctype="multipart/form-data">
+                                <div class="mt-2 mx-0 form-group row align-top">
+                                        <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
+                                        <textarea  class="form-control col-10 mr-0 h-2" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                        <button class="btn btn-sm btn-primary mt-0 ml-3" type="submit">Enviar</button>
+                                </div>
+                            </form>
+                            
                         </div>
-                    </article>
-                    <?php endfor;?>
+                        <!-- Comienzo Comentarios -->
+                        <?php foreach(getComents($unPost["id"]) as $coment): ?>
+                            <?php if($coment['contenido_c'] != ''): ?>
+                                <div class="p-2 mx-2 mb-1 rounded" style="border: 1px solid gray">
+                                <img class="rounded-circle mb-1 mr-2" src="imgs/profiles/<?= $coment["u_imagen"] ?>" width="7%" alt="<?= $coment['u_nombre']?>" title="<?= $coment['u_nombre']?>" >
+                                    <?= $coment["contenido_c"] ?>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <!-- Fin Comentarios -->
+                        </article>
+
+                        <!-- Boton para eliminar Post -->
+                        <?php if ($unPost["id_usuario"] == $usuarioActual["id"]): ?>
+                            <form method="POST" action="deletPost.php" enctype="multipart/form-data">
+                                <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
+                                <button class="btn btn-primary mt-2" type="submit">Eliminar Post</button>
+                            </form>
+                        <?php endif;?>
+                        <!-- Fin boton para eliminar Post -->
+                        
+                    <?php endforeach;?>
                     <!--Fin publicacion-->
                 </div>
                  

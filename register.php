@@ -1,5 +1,7 @@
 <?php
     session_start();
+    include_once("db.php");
+
     if (isset($_COOKIE["logeado"]) && $_COOKIE["logeado"])
         header('Location: posts.php');
     else{
@@ -8,17 +10,19 @@
         setcookie("logeado", false);
     }
 
-    function validate(){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
+    function validate($db){
         $errores = [];
         if($_POST["sex"] == NULL)
             array_push($errores, "Indique su sexo");
         if($_FILES["imagen"]["error"] != UPLOAD_ERR_OK){
             array_push($errores, "error al subir la imagen  ");
         }
-        if(in_array($_POST["reg_email"] , array_column($usA,"reg_email"))){
-            array_push($errores, "email ya existente");
+        
+        $query = $db->prepare('SELECT COUNT(username) FROM usuarios WHERE email = "'.$_POST["reg_email"].'"');
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if($result['COUNT(username)'] != 0){
+           array_push($errores, "email ya existente");
         }
         if($_POST["reg_passwd"] != $_POST["reg_passwdC"]){
             array_push($errores, "Las contrasenias no coinciden.");
@@ -30,48 +34,35 @@
                 if(false == filter_var($valor, FILTER_VALIDATE_EMAIL))
                     array_push($errores, "mail incompatible");
         }
-
         return $errores;
     }
-    function getId(){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        if(count($usA)){
-            return end($usA)['id'] + 1;
-        } else {
-            return 1;
-        }
-    }
-    function registrar(){
-        $usF = file_get_contents("usuarios.json");
-        $usA = json_decode($usF, true);
-        $temp = [];
-        $temp['id'] = getId();
-        $temp["firstname"] = $_POST["firstname"];
-        $temp["reg_email"] = $_POST["reg_email"];
-        $temp["reg_passwd"] = password_hash($_POST["reg_passwd"], PASSWORD_DEFAULT);
-        $temp["fecha_nacimineto"] = $_POST["birthday_day"] . $_POST["birthday_month"]. $_POST["birthday_year"]; 
-        $temp["sex"] = $_POST["sex"];
+
+    function registrar($db){
+        $query = $db->prepare('INSERT into usuarios (username, email, password, tipo_usuario,fecha_nac,genero_id, imagen) VALUES(:username, :email, :password, :tipo_usuario, :fecha_nac,:genero_id,:imagen)');
+        $query->bindValue(':username', $_POST["firstname"], PDO::PARAM_STR);
+        $query->bindValue(':email',  $_POST["reg_email"], PDO::PARAM_STR);
+        $query->bindValue(':password', password_hash($_POST["reg_passwd"], PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $query->bindValue(':tipo_usuario', 'usuario', PDO::PARAM_STR);
+        $query->bindValue(':fecha_nac', $_POST["birthday_day"] ."-". $_POST["birthday_month"]."-". $_POST["birthday_year"], PDO::PARAM_STR);
+        $query->bindValue(':genero_id',$_POST["sex"], PDO::PARAM_STR);
         $ext = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-        $temp["imagen"] = uniqid().".".$ext;
-        move_uploaded_file($_FILES["imagen"]["tmp_name"],"img/".$temp["imagen"]);
-        
-        array_push($usA, $temp);
-        $usF = json_encode($usA);
-        file_put_contents("usuarios.json", $usF);
+        $query->bindValue(':imagen',uniqid().".".$ext, PDO::PARAM_STR);
+        $query->execute();
+        move_uploaded_file($_FILES["imagen"]["tmp_name"],"imgs/profiles/".uniqid().".".$ext);
 
     }
-
 
     if($_POST){
-        $errores = validate();
-        if(count($errores)==0){
-            registrar();
+        $db = conectarBase();
+        $errores = validate($db);
+        if($errores==[]){
+            registrar($db);
         }
             
             
     }
    
+    $meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"];
 
 ?>  
 
@@ -104,7 +95,7 @@
 
         <h3>Registro</h3>
         <?php if($_POST):?>
-            <?php if(count($errores)==0):?>
+            <?php if($errores==[]):?>
                 <?php echo "Registro completo"?>
             <?php else:?>
                 <?php foreach($errores as $error):?>
@@ -138,57 +129,25 @@
                 <section id="containerC" class="">
                     <select name="birthday_day" class="texto-white" style="height: 1.6em">
                         <!-- Esto después lo podemos armar con PHP -->
-                        <option value="0" selected="1">Día</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
+                        <?php for($i=31; $i>=1; $i--): ?>
+                        <option value=<?= $i ?> selected=<?= $i ?>> <?= $i ?> </option>
+                        <?php endfor; ?>
                     </select>
+
                     <select name="birthday_month" class="texto-white" style="height: 1.6em">
                         <!-- Esto después lo podemos armar con PHP -->
-                        <option value="1" selected="1">Ene</option>
-                        <option value="2">Feb</option>
-                        <option value="3">Mar</option>
-                        <option value="4">Abr</option>
-                        <option value="5">May</option>
-                        <option value="6">Jun</option>
-                        <option value="7">Jul</option>
-                        <option value="8">Ago</option> 
-                        <option value="9">Sep</option> 
-                        <option value="10">Oct</option> 
-                        <option value="11">Nov</option>
-                        <option value="12">Dec</option>        
+                        <?php for($i=11; $i>=0; $i--): ?>
+                        <option value=<?= $i+1 ?> selected="<?= $i+1 ?>"> <?= $meses[$i] ?> </option>
+                        <?php endfor; ?>
                     </select>
                     <!-- Esto después lo podemos armar con PHP -->
-                    <input name = "birthday_year" type="number" class="texto-white" style="height: 1.6em" min="1900" max="2001" step="1" value="2001"/>
-
+                    <!-- <input name = "birthday_year" type="number" class="texto-white" style="height: 1.6em" min="1900" max="2001" step="1" value="2001"/> -->
+                    <select name="birthday_year" class="texto-white" style="height: 1.6em">
+                        <!-- Esto después lo podemos armar con PHP -->
+                        <?php for($i=2100; $i>=1900; $i--): ?>
+                        <option value=<?= $i ?> selected=<?= $i ?>> <?= $i ?> </option>
+                        <?php endfor; ?>
+                    </select>
                     <!-- Esto después lo podemos armar con PHP, no lo borré porque posiblemente podríamos utilizarlo para algo más -->
                     <!-- <select name="birthday_year"> -->
                     <!-- <option value="0">Año</option> -->
