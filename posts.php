@@ -7,9 +7,10 @@
     
     $usuarioActual = $_SESSION["usuario"];
 
-    $sqlstat = "select * from posts where id_usuario = :idUsuario order by id DESC";
+    $sqlstat = "select posts.*, u.id u_id, u.imagen u_imagen, u.nombre u_nombre from posts";
+    $sqlstat .= " INNER JOIN usuarios u ON u.id = posts.id_usuario  order by id DESC";
     $query = $db->prepare($sqlstat);
-    $query->bindValue(':idUsuario', $usuarioActual["id"], PDO::PARAM_STR);
+    //$query->bindValue(':idUsuario', $usuarioActual["id"], PDO::PARAM_STR);
     $query->execute();
 
     $posts = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -17,7 +18,7 @@
     function getLikes($postID){
         $db = conectarBase();
 
-        $sqlstat = "select * from reacciones";
+        $sqlstat = "select * from t_reacciones";
         $query = $db->prepare($sqlstat);
         $query->execute();
 
@@ -123,10 +124,10 @@
                         <!--Datos creador-->
                         <div class="p-2 pl-2 row">
                             <div class="col-2">
-                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=100%>
+                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $unPost["u_imagen"] ?>" width=100%>
                             </div>
                             <div class="col-10">
-                                <strong><?= $usuarioActual["nombre"] ?></strong><br>
+                                <strong><?= $unPost["u_nombre"] ?></strong><br>
                                 sarasa
                             </div>
                         </div>
