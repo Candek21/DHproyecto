@@ -1,7 +1,9 @@
 <?php
     session_start();
-    if (!$_COOKIE["logeado"])
-        header('Location: index.php');
+    require_once("db.php");
+    checaLogin();
+    $usuarioActual = $_SESSION["usuario"];
+
 ?>
 
 <!doctype html>
@@ -37,7 +39,7 @@
 
         <div id="container-banner" class="col-12">
             <div id="imagen-banner">
-                <img class="image-profile" src="imgs/profile-example.jpg" alt="">
+                <img class="image-profile" src="imgs/profiles/profile-example.jpg" alt="">
             </div>
         </div>
         <div id="container-description" class="color-blue">    
@@ -62,7 +64,7 @@
                     <article class="d-flex flex-column">
 
                         <div class="d-flex justify-content-start align-items-center"> 
-                            <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profile-example.jpg" alt=""></a> </div>
+                            <div class="col-2 p-0"> <a href="#"><img class="border border-white rounded-circle" src="imgs/profiles/profile-example.jpg" alt=""></a> </div>
                             <div class="p-0"><h5><span> GlaDOS </span></h5></div>                        
                         </div>
                         
@@ -74,15 +76,15 @@
                             <div class="comments">
                                 <ul>
                                     <li class="d-flex flex-row align-items-center"> 
-                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-1.jpg" alt=""></div> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profiles/profile-comments-example-1.jpg" alt=""></div> 
                                     <div> Comentario random 1 </div>
                                     </li>
                                     <li class="d-flex flex-row align-items-center"> 
-                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-2.jpg" alt=""></div> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profiles/profile-comments-example-2.jpg" alt=""></div> 
                                     <div> Comentario random 1 </div>
                                     </li>
                                     <li class="d-flex flex-row align-items-center"> 
-                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profile-comments-example-3.jpg" alt=""></div> 
+                                    <div class="col-2 p-0 m-1"><img class="border rounded-circle img-profile-post" src="imgs/profiles/profile-comments-example-3.jpg" alt=""></div> 
                                     <div> Comentario random 1 </div>
                                     </li>
                                 </ul>

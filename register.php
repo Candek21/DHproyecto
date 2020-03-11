@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once("db.php");
 
     if (isset($_COOKIE["logeado"]) && $_COOKIE["logeado"])
         header('Location: posts.php');
@@ -7,24 +8,6 @@
         setcookie("email", "", -1);
         setcookie("contrasenia", "",-1);
         setcookie("logeado", false);
-    }
-
-    function conectarBase(){
-
-        // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
-        $dsn = 'mysql:host=190.210.222.204;dbname=buitre_db;port3306';
-        $db_usr ='buitre';
-        $db_pass = 'cancrinachja';
-
-        try{
-            $db=new PDO($dsn,$db_usr, $db_pass);
-            
-        }catch(PDOException $exeption){
-            echo $exeption->getMessage();
-            return null;
-        }
-        return $db;    
-            
     }
 
     function validate($db){
@@ -65,7 +48,7 @@
         $ext = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
         $query->bindValue(':imagen',uniqid().".".$ext, PDO::PARAM_STR);
         $query->execute();
-        move_uploaded_file($_FILES["imagen"]["tmp_name"],"img/".uniqid().".".$ext);
+        move_uploaded_file($_FILES["imagen"]["tmp_name"],"imgs/profiles/".uniqid().".".$ext);
 
     }
 
