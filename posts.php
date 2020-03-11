@@ -6,9 +6,10 @@
     $db = conectarBase();
     
     $usuarioActual = $_SESSION["usuario"];
-
+    
     $sqlstat = "select posts.*, u.id u_id, u.imagen u_imagen, u.nombre u_nombre from posts";
-    $sqlstat .= " INNER JOIN usuarios u ON u.id = posts.id_usuario  order by id DESC";
+    
+    $sqlstat .= " INNER JOIN usuarios u ON u.id = posts.id_usuario  WHERE eliminado = 0 order by id DESC";
     $query = $db->prepare($sqlstat);
     //$query->bindValue(':idUsuario', $usuarioActual["id"], PDO::PARAM_STR);
     $query->execute();
@@ -47,6 +48,20 @@
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         //var_dump($res);
         return $res;
+
+    }
+
+    function postPropio($unPost){
+        $usuarioActual = $_SESSION["usuario"];
+        $db = conectarBase();
+        $sqlstat = "SELECT id_usuario FROM posts WHERE id = :postID";
+        $query = $db->prepare($sqlstat);
+        
+        $query->bindValue(':postID', $unPost["id"], PDO::PARAM_INT);
+        $query->execute();
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        if($res[0]["id_usuario"]==$usuarioActual["id"])
+            return "Eliminar";
 
     }
     // var_dump($posts);
@@ -143,7 +158,10 @@
                                 <p><?= $unPost["descripcion"] ?></p>
                                 <hr>
                                 <?= getLikes($unPost["id"]) ?>
+                                <a href=<?php echo("eliminar.php?post=".$unPost['id']);?>><?php echo(postPropio($unPost));?></a>
+                                
                                 <hr>
+                                
                              </div>
                             <form method="POST" action="addcomment.php" enctype="multipart/form-data">
                                 <div class="mt-2 mx-0 form-group row align-top">
