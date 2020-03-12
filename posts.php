@@ -168,7 +168,7 @@
                         <!--Publicacion-->
                         <div class="p-2">
                             <!--Contenido de la publicacion ejemplo imagen-->
-                            <?php if ($unPost['contenido_p']): ?>
+                            <?php if ($unPost['contenido_p'] && file_exists("imgs/posts/".$unPost['contenido_p'])): ?>
                                 <img src="imgs/posts/<?= $unPost["contenido_p"] ?>" width=100%>
                             <?php endif; ?>
                             <!--Descripcion y comentarios-->
@@ -197,13 +197,6 @@
                                 <hr>
                                 
                              </div>
-                            <form method="POST" action="addcomment.php" enctype="multipart/form-data">
-                                <div class="mt-2 mx-0 form-group row align-top">
-                                        <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
-                                        <textarea  class="form-control col-10 mr-0 h-2 py-1" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
-                                        <button class="btn btn-primary mt-0 ml-2 py-0" type="submit">Enviar</button>
-                                </div>
-                            </form>
                         </div>
                         <!-- Comienzo Comentarios -->
                         <?php foreach(getComents($unPost["id"]) as $coment): ?>
@@ -219,6 +212,15 @@
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <div class="p-2">
+                            <form method="POST" action="addcomment.php" enctype="multipart/form-data">
+                                    <div class="mt-2 mx-0 form-group row align-top">
+                                            <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
+                                            <textarea  class="form-control col-10 mr-0 h-2 py-1" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                            <button class="btn btn-primary mt-0 ml-2 py-0" type="submit">Enviar</button>
+                                    </div>
+                            </form>
+                        </div>
                         <!-- Fin Comentarios -->
                         </article>
                     <?php endforeach;?>
@@ -228,7 +230,7 @@
             </section>
             <div class="col-md-3 "></div>
            <!-- <div class="col-md-4 "></div>-->
-        </div>
+        </div><br><br>
 
         <?php include("footer.php"); ?>
 
