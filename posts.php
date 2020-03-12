@@ -19,8 +19,15 @@
     function getLikes($postID){
         $db = conectarBase();
 
+        
         $sqlstat = "select * from t_reacciones";
+        $sqlstat = "SELECT tr.id, tr.icono, coalesce(COUNT(lk.id),0) as cant FROM t_reacciones tr
+                    left JOIN likes lk ON tr.id = lk.id_reaccion
+                    and lk.id_post = :postID
+                    GROUP BY tr.id;";
+
         $query = $db->prepare($sqlstat);
+        $query->bindValue(":postID", $postID, PDO::PARAM_INT);
         $query->execute();
 
         $likes = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -28,9 +35,9 @@
         $toLikes = "";
         foreach($likes as $like):
             //  var_dump($postID);
-            $toLikes .= '<a href="dolike.php?id=' .$like['id'] .'&post=' .$postID .'">';
+            $toLikes .= '<a href="dolike.php?likeid=' .$like['id'] .'&post=' .$postID .'">';
             $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="15%">';
-            $toLikes .= "</a>";
+            $toLikes .= "</a><spam>" .$like["cant"] ."</spam>&nbsp;";
         endforeach;
 
         return $toLikes;
@@ -50,7 +57,7 @@
         return $res;
 
     }
-
+/*
     function postPropio($unPost){
         $usuarioActual = $_SESSION["usuario"];
         $db = conectarBase();
@@ -64,6 +71,7 @@
             return "Eliminar";
 
     }
+    */
     // var_dump($posts);
 ?>
 
@@ -159,12 +167,12 @@
                                 <hr>
                                 <span class="d-flex justify-content-between">
                                     <span>
-                                      <?= getLikes($unPost["id"]) ?>
+                                      <?= getLikes($unPost["id"], $usuarioActual["id"]) ?>
                                     </span>&nbsp;&nbsp;
                                     <?php if($unPost["u_id"] == $usuarioActual["id"]):  ?>
                                     <span>
                                     <a class="btn btn-xs btn-primary py-0 px-2" data-toggle="collapse" href="#multiCollapseExample1<?= $unPost['id']; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1<?= $unPost['id']; ?>">Eliminar</a>
-                                    &nbsp;&nbsp;
+                                    
                                     </span>
                                     <?php endif; ?>
                                 </span>
