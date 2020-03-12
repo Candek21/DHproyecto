@@ -136,7 +136,7 @@
                                         <input type="file" class="custom-file-input" id="customFile" name="imagen" accept="image/*">
                                         <label class="custom-file-label" for="customFile">Seleccion una imagen</label>
                                     </div>
-                                    <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+                                    <button class="btn btn-primary mt-2 py-0 px-2" type="submit">Enviar</button>
                                     
                                 </form>
                             </div>
@@ -190,7 +190,7 @@
                             <form method="POST" action="addcomment.php" enctype="multipart/form-data">
                                 <div class="mt-2 mx-0 form-group row align-top">
                                         <input type="hidden" name="post" value="<?= $unPost["id"] ?>">
-                                        <textarea  class="form-control col-10 mr-0 h-2 py-0" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
+                                        <textarea  class="form-control col-10 mr-0 h-2 py-1" rows="1" placeholder="Ingrese aquí su comentario..." name="comentario"></textarea>
                                         <button class="btn btn-primary mt-0 ml-2 py-0" type="submit">Enviar</button>
                                 </div>
                             </form>
