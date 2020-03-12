@@ -29,7 +29,7 @@
         foreach($likes as $like):
             //  var_dump($postID);
             $toLikes .= '<a href="dolike.php?id=' .$like['id'] .'&post=' .$postID .'">';
-            $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="5%">';
+            $toLikes .= '<img src="imgs/reacciones/' .$like['icono'] .'" width="15%">';
             $toLikes .= "</a>";
         endforeach;
 
@@ -154,12 +154,28 @@
                                 <img src="imgs/posts/<?= $unPost["contenido_p"] ?>" width=100%>
                             <?php endif; ?>
                             <!--Descripcion y comentarios-->
-                            <div class="mt-2">
+                            <div class="mt-2 ">
                                 <p><?= $unPost["descripcion"] ?></p>
                                 <hr>
-                                <?= getLikes($unPost["id"]) ?>
-                                <a href=<?php echo("eliminar.php?post=".$unPost['id']);?>><?php echo(postPropio($unPost));?></a>
-                                
+                                <span class="d-flex justify-content-between">
+                                    <span>
+                                      <?= getLikes($unPost["id"]) ?>
+                                    </span>&nbsp;&nbsp;
+                                    <?php if($unPost["u_id"] == $usuarioActual["id"]):  ?>
+                                    <span>
+                                    <a class="btn btn-xs btn-primary py-0 px-2" data-toggle="collapse" href="#multiCollapseExample1<?= $unPost['id']; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1<?= $unPost['id']; ?>">Eliminar</a>
+                                    &nbsp;&nbsp;
+                                    </span>
+                                    <?php endif; ?>
+                                </span>
+                                <?php if($unPost["u_id"] == $usuarioActual["id"]):  ?>
+                                <div class="collapse multi-collapse" id="multiCollapseExample1<?= $unPost['id']; ?>">
+                                            <br>
+                                            <span>Eliminar este post?</span>
+                                            <a class="btn btn-xs btn-primary py-0 px-2" href="eliminar.php?post=<?= $unPost["id"]; ?>" role="button">Si</a>
+                                            <a class="btn btn-xs btn-primary py-0 px-2" data-toggle="collapse" href="#multiCollapseExample1<?= $unPost['id']; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1<?= $unPost['id']; ?>">No</a>
+                                        </div>
+                                <?php endif; ?>
                                 <hr>
                                 
                              </div>
