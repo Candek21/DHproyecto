@@ -119,7 +119,12 @@
                         <!--Datos creador-->
                         <div class="p-2 pl-2 row">
                             <div class="col-2">
-                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $usuarioActual["imagen"] ?>" width=100%>
+                            <?php if ( file_exists("imgs/profiles/".$usuarioActual["imagen"]) ):
+                                    $imagen = $usuarioActual["imagen"];
+                                else:
+                                    $imagen = "noUser.png";
+                                endif; ?>
+                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $imagen ?>" width=100%>
                             </div>
                             <div class="col-10">
                                 <strong><?= $usuarioActual["nombre"] ?></strong><br>
@@ -147,7 +152,12 @@
                         <!--Datos creador-->
                         <div class="p-2 pl-2 row">
                             <div class="col-2">
-                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $unPost["u_imagen"] ?>" width=100%>
+                                <?php if ( file_exists("imgs/profiles/".$unPost["u_imagen"]) ):
+                                    $imagen = $unPost["u_imagen"];
+                                else:
+                                    $imagen = "noUser.png";
+                                endif; ?>
+                                <img class="rounded-circle mb-1 mr-2"src="imgs/profiles/<?= $imagen ?>" width=100%>
                             </div>
                             <div class="col-10">
                                 <strong><?= $unPost["u_nombre"] ?></strong><br>
@@ -164,8 +174,8 @@
                             <!--Descripcion y comentarios-->
                             <div class="mt-2 ">
                                 <p><?= $unPost["descripcion"] ?></p>
-                                <hr>
-                                <span class="d-flex justify-content-between">
+                                <hr class="py-0">
+                                <span class="d-flex justify-content-between py-0">
                                     <span>
                                       <?= getLikes($unPost["id"], $usuarioActual["id"]) ?>
                                     </span>&nbsp;&nbsp;
@@ -199,7 +209,12 @@
                         <?php foreach(getComents($unPost["id"]) as $coment): ?>
                             <?php if($coment['contenido_c'] != ''): ?>
                                 <div class="p-2 mx-2 mb-1 rounded" style="border: 1px solid gray">
-                                <img class="rounded-circle mb-1 mr-2" src="imgs/profiles/<?= $coment["u_imagen"] ?>" width="7%" alt="<?= $coment['u_nombre']?>" title="<?= $coment['u_nombre']?>" >
+                                <?php if ( file_exists("imgs/profiles/".$coment["u_imagen"]) ):
+                                    $imagen = $coment["u_imagen"];
+                                else:
+                                    $imagen = "noUser.png";
+                                endif; ?>
+                                <img class="rounded-circle mb-1 mr-2" src="imgs/profiles/<?= $imagen ?>" width="7%" alt="<?= $coment['u_nombre']?>" title="<?= $coment['u_nombre']?>" >
                                     <?= $coment["contenido_c"] ?>
                                 </div>
                             <?php endif; ?>
