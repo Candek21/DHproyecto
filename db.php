@@ -2,8 +2,9 @@
     function conectarBase(){
 
         // $dsn = 'mysql:host=127.0.0.1;dbname=buitre_db;port3306';
+        // si no funciona con infosir.no-ip.org usar 190.195.133.61
         $dsn = 'mysql:host=infosir.no-ip.org;dbname=buitre_db;port3306';
-        $db_usr ='infosir_buitre';
+        $db_usr ='buitre';
         $db_pass = 'cancrinachja';
 
         try{
